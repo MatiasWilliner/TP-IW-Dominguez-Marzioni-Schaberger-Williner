@@ -23,4 +23,5 @@ urlpatterns = [
     path('perfil/', views.perfil),
     path('admin/', admin.site.urls),
     path("cuentas/", include("django.contrib.auth.urls")),
+    path("register/", views.register_request, name="register"),
 ]
