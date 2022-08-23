@@ -1,1 +1,1 @@
-web: cd lavaderos_online && gunicorn miproyecto.wsgi --log-file -
+web: cd lavaderos_online && gunicorn lavaderos_online.wsgi --log-file -
