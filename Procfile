@@ -1,0 +1,1 @@
+web: gunicorn lavaderos_online.wsgi --log-file -
