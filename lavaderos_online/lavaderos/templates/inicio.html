@@ -30,8 +30,8 @@
     <br>
     <div>
         <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
-        <p>Para comenzar a ver los disponibles hacé click en el botón</p>
-        <button>LISTADO</button>
+        <p>Ver perfil</p>
+        <a href="{% url 'perfil' %}"><button>Mi Perfil</button></a>
     </div>
 {% else %}
     <h1>Inicio</h1>
@@ -41,7 +41,7 @@
     <br>
     <div>
         <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
-        <p>Para comenzar a ver los disponibles hacé click en el botón</p>
+        <p>Ver perfil</p>
         <a href="{% url 'perfil' %}"><button>Mi Perfil</button></a>
     </div>
 {% endif %}
