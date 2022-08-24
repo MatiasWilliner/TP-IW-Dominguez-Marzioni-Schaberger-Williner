@@ -6,13 +6,14 @@
 
 <!--Register--> 
 <div class="container py-5">
-	<h1>Register</h1>
+	<h1>Registrarse</h1>
 	<form method="POST">
 		{% csrf_token %}
-		{{ register_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
+		{{ register_form|crispy }}
+		<br>                    
+		<button class="btn btn-primary" type="submit">¡Listo!</button>
 	</form>
-	<p class="text-center">If you already have an account, <a href="{% url 'login' %}">login</a> instead.</p>
+	<p class="text-center">Si ya tenés una cuenta, <a href="{% url 'login' %}">ingresá</a>.</p>
 </div>
 
 {% endblock %}
