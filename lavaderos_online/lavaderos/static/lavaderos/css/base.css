@@ -39,6 +39,8 @@ ul.messages li a.close {
     float:left;
 }
 
-body {
+body{
     padding: 15px;
+    background-color: #fff;
+    background: #fff;
 }

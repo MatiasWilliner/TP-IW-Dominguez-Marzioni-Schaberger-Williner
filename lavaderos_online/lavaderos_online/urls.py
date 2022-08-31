@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from lavaderos import views
+from lavaderos  import views
+
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
@@ -24,4 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("cuentas/", include("django.contrib.auth.urls")),
     path("register/", views.register_request, name="register"),
+    #NICO
+    path('basic/', views.basic),
+    path('lavadero/', views.lavadero),
+    path('registrolavadero/', views.registroLavadero),
 ]

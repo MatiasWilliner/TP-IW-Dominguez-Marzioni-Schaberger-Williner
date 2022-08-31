@@ -1,49 +1,28 @@
-<!--<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lavaderos Online - Inicio</title>
-</head>
-<body>
-    <h1>Inicio</h1>
-    <br>
-    <div>
-        <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
-        <p>Para comenzar a ver los disponibles hacé click en el botón</p>
-        <button>LISTADO</button>
-    </div>
-</body>
-</html>-->
-{% extends "base.html" %}
+
+{% extends "basic.html" %}
 
 {% block title %}Inicio{% endblock %}
 
-{% block content %}
-<body>
-{% if user.is_authenticated %}  
-    <h1>Inicio</h1>
-    <br>
-    ¡Bienvenido {{ user.username }}!
-    <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
-    <br>
-    <div>
-        <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
-        <p>Ver perfil</p>
-        <a href="{% url 'perfil' %}"><button>Mi Perfil</button></a>
-    </div>
-{% else %}
-    <h1>Inicio</h1>
-    <br>
-    <p>No iniciaste sesión</p>
-    <a href="{% url 'login' %}">Ingresar</a>
-    <br>
-    <div>
-        <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
-        <p>Ver perfil</p>
-        <a href="{% url 'perfil' %}"><button>Mi Perfil</button></a>
-    </div>
+{% block contentmain %}
+    {% if user.is_authenticated %}  
+        ¡Bienvenido {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+        <br>
+        <div>
+            <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
+            <p>Ver perfil</p>
+            <a href="{% url 'perfil' %}"><button>Mi Perfil</button></a>
+        </div>
+    {% else %}
+        <h1>Inicio</h1>
+        <br>
+        <p>No iniciaste sesión</p>
+        <a href="{% url 'login' %}">Ingresar</a>
+        <br>
+        <div>
+            <p>En este sitio vas a encontrar los lavaderos con disponibilidad de Rafaela!</p>
+            <p>Ver perfil</p>
+            <a href="{% url 'perfil' %}"><button>Mi Perfil</button></a>
+        </div>
 {% endif %}
-</body>
 {% endblock %}

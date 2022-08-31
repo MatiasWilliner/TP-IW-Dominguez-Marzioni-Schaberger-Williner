@@ -1,31 +1,29 @@
+{% extends "basic.html" %}
+{% load static %}
 
-    {% extends "basic.html" %}
-    {% load static %}
-    
-    {% block title %}Lavaderos Online{% endblock %}
-    
-    {% block header %}
-        <link href="{% static 'lavaderos/css/lavadero.css' %}" rel="stylesheet" type="text/css">
-    {% endblock %}
-    
-      
-      
-    {% block contentmain %}
+
+{% block header %}
+<link href="{% static 'lavaderos/css/lavadero.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+  
+  
+{% block contentmain %}
     <div class="contentlavadero">
         <div class="topcontentlavadero">
             <img class="avatar" src="" alt="">
-            <div class="namelavadero">¡Bienvenido {{ user.username }}!</div>
-            <div class="estadolavadero"></div>
+            <div class="namelavadero">CAR WASH RAF</div>
+            <div class="estadolavadero">ACTIVO</div>
         </div>
         <div class="cardslavadero">
             <div class="cardlavaderoperfil">
                 <div class="leftcardlavaderoperfil">
-                    <img class="imglav" src="https://img.blogs.es/anexom/wp-content/uploads/2021/12/perfil-1024x754.jpg" alt="">
+                    <img class="imglav" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
                 </div>
                 <div class="rightcardlavaderoperfil">
                     <div class="titulocard">PERFIL</div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text ml" id="inputGroup-sizing-default">Usuario</span>
+                        <span class="input-group-text ml" id="inputGroup-sizing-default">Encargado</span>
                         <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
@@ -47,11 +45,31 @@
                 </div>                   
             </div>
             <div class="cardlavaderoprecio">
-                
+                <div class="titulocard">TARIFAS</div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text rl">Tarifa Moto</span>
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text rl">Tarifa Auto</span>
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text rl">Tarifa PickUps</span>
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text rl">Tarifa Camion</span>
+                    <span class="input-group-text">$</span>
+                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
             </div>               
         </div>
         <div class="bottomcardlavadero">
             
         </div>
     </div>
-    {% endblock %}
+{% endblock %}

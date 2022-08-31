@@ -1,0 +1,91 @@
+.contentlavadero{
+    max-width: 1180px;
+}
+
+.topcontentlavadero{
+    padding: 10px;
+    height: 65px;
+    border-radius: 5px;
+    background-color: #223E8C;
+    color: aliceblue;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.estadolavadero{
+    font-size: large;
+}
+
+.imglav{
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.cardslavadero{
+    display: flex;
+    gap: 40px;
+}
+
+.cardlavaderoperfil{
+    margin-top: 30px;
+    padding: 10px;
+    display: grid;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    border-radius: 5px;
+    grid-template-columns: 0.6fr 1fr;
+    gap: 20px;
+    min-height: 400px;
+    width: 100%;
+}
+
+.leftcardlavaderoperfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.rightcardlavaderoperfil{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-group-text.ml{
+    width: 120px;
+    border-radius: 3px;
+}
+.input-group-text.rl{
+    width: 120px;
+}
+
+.titulocard{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: x-large;
+    
+}
+
+.cardlavaderoprecio{
+    margin-top: 30px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    border-radius: 5px;
+    min-height: 400px;
+
+}
+
+.bottomcardlavadero{
+    height: 50px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    margin-top: 30px;
+}
+

@@ -10,6 +10,22 @@ from django.contrib import messages
 def inicio(request):
     return render(request, 'inicio.html', {})
 
+#NICO
+def basic(request):
+    return render(request,'basic.html',{})
+    
+    
+    
+    
+#NICO
+def lavadero(request):
+    return render(request,'lavadero.html',{})
+
+#NICO
+def registroLavadero(request):
+    return render(request,'registroLavadero.html',{})
+
+
 @login_required(login_url='/cuentas/login/')
 def perfil(request):
     return render(request, 'perfil.html', {})
