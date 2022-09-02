@@ -89,9 +89,47 @@ body{
     gap: 5px;
 }
 
+.namelav{
+    background-color: #223E8C;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+}
+
 .imglavhome{
     max-width: 250px;
+    border-radius: 5px;
 }
+
+.inputitem{
+    border: 0;
+    outline: none;
+}
+
+.labelitem{
+    color: grey;
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+.itempers{
+    display: grid;
+    margin: 0;
+    padding: 0;
+}
+
+.btn.btn-primaryy{
+    background-color: #1E3A8A;
+    color: white;
+    cursor: pointer;
+}
+
+.btn.btn-primaryy:hover{
+    background-color: #3154b6;
+}
+
+
+
 
 
 

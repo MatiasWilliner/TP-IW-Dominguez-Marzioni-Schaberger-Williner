@@ -8,6 +8,7 @@ from django.contrib import messages
 
 # Página de inicio del sitio.
 def inicio(request):
+    print ("Hola mundo")
     return render(request, 'inicio.html', {})
 
 #NICO

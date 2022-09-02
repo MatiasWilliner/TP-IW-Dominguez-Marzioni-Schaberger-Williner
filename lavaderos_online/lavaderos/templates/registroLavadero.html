@@ -10,8 +10,134 @@
   
   
 {% block contentmain %}
-    <div>LAVAERO REGISTRO</div>
-    <div class="formulario">
-        aca va el formulario
+<div class="contentlavadero">
+    <div class="topcontentlavadero">
+        <img class="avatar" src="" alt="">
+        <div class="namelavadero">Registro Lavadero</div>
+        <div class="estadolavadero"></div>
     </div>
+    <div class="bienvenidamensaje">
+        <div class="bienvenidoregistro">Bienvenido al registro de Lavadero-Online</div>
+        <div class="bienvenidoregistro">A continuación rellene los campos solicitados</div>
+    </div>
+    <form action="POST">
+    <div class="cardslavadero">
+        <div class="cardlavaderoregistro">
+            <div class="titulocard">MI LAVADERO</div>
+                <div class="milavaderocard">
+                <div class="input-group-middle mb-3">
+                    <span class="input-group-text centro" id="inputGroup-sizing-default">NOMBRE</span>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Ingrese el nombre de su Lavadero" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group-middle mb-3">
+                    <span class="input-group-text centro" id="inputGroup-sizing-default">IMAGEN</span>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="formFile">
+                  </div>
+                <img class="imglav" src='https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg' alt="add_photo.png">
+            </div>
+        </div>
+        <div class="cardlavaderoregistro">
+            <div class="titulocard">PERFIL</div>
+            <div class="input-group mb-3">
+                <span class="input-group-text ml" id="inputGroup-sizing-default">Encargado</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" value="" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text ml" id="inputGroup-sizing-default">Teléfono</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" value="" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text ml" id="inputGroup-sizing-default">WhatsApp</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" value="" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text ml" id="inputGroup-sizing-default">Dirección</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" value="" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text ml" id="inputGroup-sizing-default">Localidad</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" value="" aria-describedby="inputGroup-sizing-default">
+            </div>
+                            
+        </div>  
+        <div class="cardlavaderoregistro">
+            <div class="titulocard">HORARIOS</div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Lunes</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Martes</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Miercoles</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Jueves</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Viernes</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Sabado</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Domingo</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                <span class="input-group-text">HS</span>
+            </div>
+        </div>    
+        <div class="cardlavaderoregistro">
+            <div class="titulocard">TARIFAS</div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Tarifa Moto</span>
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Tarifa Auto</span>
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Tarifa PickUps</span>
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text rl">Tarifa Camion</span>
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+            </div>
+        </div>            
+    </div>
+    <div class="topcontentlavadero button">
+        <img class="avatar" src="" alt="">
+        <div class="namelavadero">REGISTRARSE</div>
+        <div class="estadolavadero"></div>
+    </div>
+    </form>
+</div>
 {% endblock %}

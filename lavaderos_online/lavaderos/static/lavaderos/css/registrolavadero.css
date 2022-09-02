@@ -1,4 +1,130 @@
-.formulario{
-    height: 800px;
-    background-color: white;
+.contentlavadero{
+    max-width: 1180px;
 }
+
+.topcontentlavadero{
+    padding: 10px;
+    height: 65px;
+    border-radius: 5px;
+    background-color: #223E8C;
+    color: aliceblue;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+.topcontentlavadero.button{
+    height: 40px;
+    background-color: #223E8C;
+    cursor: pointer;
+}
+.topcontentlavadero.button:hover{
+    background-color: #2d4fac;
+}
+
+.estadolavadero{
+    font-size: large;
+}
+
+.imglav{
+    width: 350PX;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.cardslavadero{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-block: 25px;
+}
+
+.bienvenidoregistro{
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    grid-column: 1/3;
+}
+
+.input-group-text.centro{
+    text-align: center;
+    justify-content: center;
+}
+
+.cardlavaderoregistro{
+    padding: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    border-radius: 5px;
+    min-height: 400px;
+    padding-inline: 30px;
+
+}
+
+.milavaderocard{
+    display: grid;
+    justify-content: center;
+}
+
+.cardlavaderoperfil{
+    margin-top: 30px;
+    padding-inline: 40px;
+    display: grid;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    border-radius: 5px;
+    gap: 20px;
+    min-height: 400px;
+    width: 100%;
+}
+
+.leftcardlavaderoperfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.rightcardlavaderoperfil{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.input-group-text.ml{
+    width: 120px;
+    border-radius: 3px;
+}
+.input-group-text.rl{
+    width: 120px;
+}
+
+.titulocard{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: x-large;
+    background-color: #223E8C;
+    color: white;
+    border-radius: 2PX;
+}
+
+
+.cardlavaderoprecio{
+    margin-top: 30px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    border-radius: 5px;
+    min-height: 400px;
+
+}
+
+.bienvenidamensaje{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    margin-top: 30px;
+}
+
