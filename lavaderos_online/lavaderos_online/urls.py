@@ -20,13 +20,12 @@ from lavaderos  import views
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('', views.inicio),
+    path('', views.inicio, name="inicio"),
     path('perfil/', views.perfil, name="perfil"),
     path('admin/', admin.site.urls),
     path("cuentas/", include("django.contrib.auth.urls")),
     path("register/", views.register_request, name="register"),
-    #NICO
     path('lavaderos/', views.basic),
-    path('perfillavadero/', views.lavadero),
+    path('perfillavadero/', views.lavadero, name="perfillavadero"),
     path('registrolavadero/', views.registroLavadero),
 ]

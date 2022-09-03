@@ -25,7 +25,9 @@ class Lavadero(models.Model):
         choices=ESTADOS,
         default='C',
     )
-    imagen = models.BinaryField(null=True, default=None)
+    encargado = models.CharField(max_length=128, default="")
+    imagen = models.FileField(null=True, blank=True)
+    objects = models.Manager()
 
     def __str__(self):
         return self.nombre
