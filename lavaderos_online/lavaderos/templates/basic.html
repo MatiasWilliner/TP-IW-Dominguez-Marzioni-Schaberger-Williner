@@ -41,7 +41,7 @@
                 <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/perfillavadero/1">MI LAVADERO</a>
+                <a class="nav-link" href="/perfillavadero/{{user.id}}">MI LAVADERO</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/registrolavadero/">REGISTAR LAVADERO</a>
@@ -54,12 +54,14 @@
         </div>
         <div class="contentcenter">
             <div class="content">
-                {% block contentmain %}
-                
+                {% block contentmain %}               
                 <div class="topcontent">
                     <div class="searchhome">
                         <form  method="GET">
-                            <label for="featured">ESTADO</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-text">
+                                Lavaderos
+                            </div>
                             <select class="form-select" name="estado">
                                 <option value="T">TODOS</option>
                                 {% if estadoselect == "A" %}
@@ -72,7 +74,8 @@
                                 {% else %}
                                 <option value="C">CERRADO</option>
                                 {% endif %}
-                            <input type="submit" value="Filter" />
+                            <input class="filtroboton" type="submit" value="Filtrar" />
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -80,7 +83,9 @@
                     {% for lavadero in lavaderolist %}
                     <div class="cardhome">
                         <div class="namelav">{{lavadero.nombre}}</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
+                        <div class="bottomcard">
+                            <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
+                        </div>
                         <div class="detaillav">  
                             <div class="itempers">
                                 <label class="labelitem">Dirección</label>
@@ -95,7 +100,10 @@
                                 <input class="inputitem" value={{lavadero.get_estado_display}}>
                             </div>
                         </div>
-                        <a  href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas Info</button></a> 
+                        <div class="bottomcard">
+                            <a href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas Info</button></a> 
+                        </div>
+                        
                     </div> 
                     {% endfor %}               
                 </div>

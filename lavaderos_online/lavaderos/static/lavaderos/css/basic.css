@@ -56,6 +56,14 @@ body{
     justify-content: center;
 }
 
+.filtroboton{
+    border: 0.5px solid #dddddd;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 81px;
+    cursor: pointer;
+}
+
 .content{
     width: 100%;
     max-width: 1300px;
@@ -74,7 +82,7 @@ body{
 .maincontent{
     display: grid;
 	grid-gap: 20px;
-	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 .cardhome{
@@ -87,6 +95,11 @@ body{
     justify-content: space-between;
     padding: 5px;
     gap: 5px;
+}
+
+.bottomcard{
+    display: flex;
+    justify-content: center;
 }
 
 .namelav{
