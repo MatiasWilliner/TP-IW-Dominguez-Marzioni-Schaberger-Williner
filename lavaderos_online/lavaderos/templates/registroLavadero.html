@@ -30,15 +30,5 @@
             <input type="submit" value="REGISTRARSE">
         </div>            
     </div>
-    <form method="POST">
-        <div class="cardslavadero">
-            <div class="cardlavaderoregistro">
-                {% csrf_token %}
-                {{tarifas_lavadero|crispy}}
-                <br>
-                <input type="submit" value="AGREGAR">
-            </div>            
-        </div>
-    </form>
 </div>
 {% endblock %}

@@ -12,8 +12,8 @@
     <div class="contentlavadero">
         <div class="topcontentlavadero">
             <img class="avatar" src="" alt="">
-            <div class="namelavadero">CAR WASH RAF</div>
-            <div class="estadolavadero">ACTIVO</div>
+            <div class="namelavadero">{{lavadero.nombre}}</div>
+            <div class="estadolavadero">{{lavadero.estado}}</div>
         </div>
         <div class="cardslavadero">
             <div class="cardlavaderoperfil">
@@ -24,23 +24,19 @@
                     <div class="titulocard">PERFIL</div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Encargado</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.encargado}} aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Teléfono</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.telefono}} aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">WhatsApp</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.telefono_aux}} aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Dirección</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text ml" id="inputGroup-sizing-default">Localidad</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.direccion}} aria-describedby="inputGroup-sizing-default">
                     </div>
                 </div>                   
             </div>

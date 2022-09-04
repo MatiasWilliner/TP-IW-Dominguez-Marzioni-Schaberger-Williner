@@ -41,7 +41,7 @@
                 <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/perfillavadero/">MI LAVADERO</a>
+                <a class="nav-link" href="/perfillavadero/1">MI LAVADERO</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/registrolavadero/">REGISTAR LAVADERO</a>
@@ -55,193 +55,49 @@
         <div class="contentcenter">
             <div class="content">
                 {% block contentmain %}
+                
                 <div class="topcontent">
                     <div class="searchhome">
-                        <div class="input-group mb-3">
-                            <div class="input-group-text">
-                                Lavaderos
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input with checkbox">
-                            <div class="input-group-text">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
-                        </div>
+                        <form  method="GET">
+                            <label for="featured">ESTADO</label>
+                            <select class="form-select" name="estado">
+                                <option value="T">TODOS</option>
+                                {% if estadoselect == "A" %}
+                                <option selected value="A">ACTIVO</option>
+                                {% else %}
+                                <option value="A">ACTIVO</option>
+                                {% endif %}
+                                {% if estadoselect == "C" %}
+                                <option selected value="C">CERRADO</option>
+                                {% else %}
+                                <option value="C">CERRADO</option>
+                                {% endif %}
+                            <input type="submit" value="Filter" />
+                        </form>
                     </div>
                 </div>
                 <div class="maincontent">
+                    {% for lavadero in lavaderolist %}
                     <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
+                        <div class="namelav">{{lavadero.nombre}}</div>
                         <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
                         <div class="detaillav">  
                             <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
+                                <label class="labelitem">Dirección</label>
+                                <input class="inputitem" value={{lavadero.direccion}}>
                             </div>
                             <div class="itempers">
                                 <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
+                                <input class="inputitem" value={{lavadero.telefono}}>
+                            </div>
+                            <div class="itempers">
+                                <label class="labelitem">Estado</label>
+                                <input class="inputitem" value={{lavadero.get_estado_display}}>
                             </div>
                         </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                    
-                    <div class="cardhome">
-                        <label class="namelav">LAVADERO #1</label>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                    
-                    <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                    
-                    <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                    
-                    <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                
-                    <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                    
-                    <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
-                    
-                    <div class="cardhome">
-                        <div class="namelav">LAVADERO #1</div>
-                        <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
-                        <div class="detaillav">
-                            <div class="detaillav">  
-                            <div class="itempers">
-                                <label class="labelitem">Ubicación</label>
-                                <input class="inputitem" value="Cerdan 1755 - Guemes">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Tarifa</label>
-                                <input class="inputitem" value="Ver Info">
-                            </div>
-                            <div class="itempers">
-                                <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value="+54-3492-314707">
-                            </div>
-                        </div>
-                        </div>
-                        <button class="btn btn-primaryy">Mas Info</button> 
-                    </div>
+                        <a  href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas Info</button></a> 
+                    </div> 
+                    {% endfor %}               
                 </div>
                 {% endblock %}
             </div>
@@ -251,3 +107,12 @@
 </html>
 
 
+<!--<div class="input-group mb-3">
+    <div class="input-group-text">
+        Lavaderos
+    </div>
+    <input type="text" class="form-control" aria-label="Text input with checkbox">
+    <div class="input-group-text">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+</div>-->
