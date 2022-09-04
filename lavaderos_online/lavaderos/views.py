@@ -51,7 +51,7 @@ def registroLavadero(request):
     form = NewLavaderoForm()
     formulario = NewTarifaForm()
     if request.method == "POST":
-        form = NewLavaderoForm(request.POST or None)
+        form = NewLavaderoForm(request.POST, request.FILES)
         if form.is_valid():
             lavadero = form.save(commit=False)
             lavadero.creado_por = user

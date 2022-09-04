@@ -26,7 +26,7 @@ class Lavadero(models.Model):
         default='C',
     )
     encargado = models.CharField(max_length=128, default="")
-    imagen = models.FileField(null=True, blank=True)
+    imagen = models.ImageField(null=True, blank=True, upload_to="images/")
     objects = models.Manager()
 
     def __str__(self):

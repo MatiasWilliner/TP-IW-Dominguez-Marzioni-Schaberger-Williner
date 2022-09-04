@@ -67,7 +67,7 @@
                                 {% if estadoselect == "A" %}
                                 <option selected value="A">ACTIVO</option>
                                 {% else %}
-                                <option value="A">ACTIVO</option>
+                                <option value="A">ABIERTO</option>
                                 {% endif %}
                                 {% if estadoselect == "C" %}
                                 <option selected value="C">CERRADO</option>
@@ -84,20 +84,24 @@
                     <div class="cardhome">
                         <div class="namelav">{{lavadero.nombre}}</div>
                         <div class="bottomcard">
-                            <img class="imglavhome" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
+                            {% if lavadero.imagen %}
+                            <img class="imglavhome" src="{{ lavadero.imagen.url }}" alt="">
+                            {% else %}
+                            <img class="imglavhome" src="/media/images/default.jpg" alt="">
+                            {% endif %}
                         </div>
                         <div class="detaillav">  
                             <div class="itempers">
                                 <label class="labelitem">Dirección</label>
-                                <input class="inputitem" value={{lavadero.direccion}}>
+                                <input class="inputitem" value="{{lavadero.direccion}}">
                             </div>
                             <div class="itempers">
                                 <label class="labelitem">Contacto</label>
-                                <input class="inputitem" value={{lavadero.telefono}}>
+                                <input class="inputitem" value="{{lavadero.telefono}}">
                             </div>
                             <div class="itempers">
                                 <label class="labelitem">Estado</label>
-                                <input class="inputitem" value={{lavadero.get_estado_display}}>
+                                <input class="inputitem" value="{{lavadero.get_estado_display}}">
                             </div>
                         </div>
                         <div class="bottomcard">

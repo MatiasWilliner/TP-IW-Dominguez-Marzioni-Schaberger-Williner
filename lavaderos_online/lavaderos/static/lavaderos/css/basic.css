@@ -110,7 +110,8 @@ body{
 }
 
 .imglavhome{
-    max-width: 250px;
+    width: 250px;
+    height: 150px;
     border-radius: 5px;
 }
 
