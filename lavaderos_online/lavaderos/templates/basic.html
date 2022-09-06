@@ -40,6 +40,7 @@
                 <li class="nav-item">
                 <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
+                {% if user.is_authenticated %}                  
                 <li class="nav-item">
                 <a class="nav-link" href="/perfillavadero/{{user.id}}">MI LAVADERO</a>
                 </li>
@@ -47,8 +48,9 @@
                     <a class="nav-link" href="/registrolavadero/">REGISTAR LAVADERO</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/cuentas/login/">LOG OUT</a>
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
                 </li>
+                {% endif %}
                 
             </ul>
         </div>

@@ -11,11 +11,14 @@ from lavaderos.models import *
 
 # Página de inicio del sitio.
 def inicio(request):
+    if request.user.is_authenticated:
+        return redirect("lavaderos")
     print ("Hola mundo")
     return render(request, 'inicio.html', {})
 
 #NICO
 def basic(request):
+    user = request.user
     featured_filter = 'T'
     if request.GET.get('estado'):
         featured_filter = request.GET.get('estado')
@@ -25,7 +28,7 @@ def basic(request):
             lavadero = Lavadero.objects.filter(estado=featured_filter)
     else:
         lavadero = Lavadero.objects.exclude(estado='I')
-    return render(request,'basic.html',{'lavaderolist':lavadero,'estadoselect':featured_filter})
+    return render(request,'basic.html',{'lavaderolist':lavadero,'estadoselect':featured_filter,"user":user})
     
     
 #NICO
