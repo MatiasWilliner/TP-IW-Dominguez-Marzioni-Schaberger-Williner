@@ -18,25 +18,29 @@
         <div class="cardslavadero">
             <div class="cardlavaderoperfil">
                 <div class="leftcardlavaderoperfil">
-                    <img class="imglav" src="https://st.depositphotos.com/1203257/4886/i/450/depositphotos_48867585-stock-photo-summer-car-washing.jpg" alt="">
+                    {% if lavadero.imagen %}
+                        <img class="imglav" src="{{ lavadero.imagen.url }}" alt="">
+                    {% else %}
+                        <img class="imglav" src="/media/images/default.jpg" alt="">
+                    {% endif %}
                 </div>
                 <div class="rightcardlavaderoperfil">
                     <div class="titulocard">PERFIL</div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Encargado</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.encargado}} aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{lavadero.encargado}}" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Teléfono</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.telefono}} aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{lavadero.telefono}}" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">WhatsApp</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.telefono_aux}} aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{lavadero.telefono_aux}}" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Dirección</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" value={{lavadero.direccion}} aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{lavadero.direccion}}" aria-describedby="inputGroup-sizing-default">
                     </div>
                 </div>                   
             </div>
