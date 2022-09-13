@@ -53,9 +53,9 @@ def lavadero(request,id):
 
 #NICO
 @login_required(login_url='/cuentas/login/')
-def registroLavadero(request):
-
+def registroLavadero(request):    
     user = request.user
+    usuario_tiene_lavadero = Lavadero.objects.filter(creado_por=user).exists()
     form = NewLavaderoForm()
     formulario = NewTarifaForm()
     if request.method == "POST":
@@ -66,7 +66,7 @@ def registroLavadero(request):
 
             lavadero.save()
             return redirect("inicio")
-    return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form})
+    return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form, "tiene_lavadero":usuario_tiene_lavadero})
 
 
 
