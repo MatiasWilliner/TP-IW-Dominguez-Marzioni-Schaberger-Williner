@@ -48,6 +48,7 @@ body{
     font-weight: initial;
     padding-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+
 }
 
 
@@ -141,6 +142,21 @@ body{
 .btn.btn-primaryy:hover{
     background-color: #3154b6;
 }
+
+@media (max-width: 700px) {
+    .sidebar{
+        position: absolute;
+        transition: 0.5s all ease;
+        top: 100px;
+        left: -215px;
+        z-index: 1000;
+        position: fixed;
+    } 
+
+    .page{
+        grid-template-columns: 1fr;
+    }
+  }
 
 
 
