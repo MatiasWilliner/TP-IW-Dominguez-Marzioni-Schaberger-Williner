@@ -1,0 +1,16 @@
+{% extends "basic.html" %}
+{% load static %}
+
+{% block contentmain %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ tarifa_form.management_form }}
+    {% for f in tarifa_form %}
+        {{f}}
+        <p></p>
+    {% endfor %}
+    <button type="submit">GUARDAR</button>
+</form>
+
+{% endblock %}
