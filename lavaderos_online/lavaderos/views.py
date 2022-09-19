@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import NewUserForm, NewLavaderoForm, NewTarifaForm
 from .models import Lavadero
+from django.forms import formset_factory, inlineformset_factory
 from django.contrib.auth import login, get_user_model
 from django.contrib import messages
 from lavaderos.models import *
@@ -53,9 +54,9 @@ def lavadero(request,id):
 
 #NICO
 @login_required(login_url='/cuentas/login/')
-def registroLavadero(request):
-
+def registroLavadero(request):    
     user = request.user
+    usuario_tiene_lavadero = Lavadero.objects.filter(creado_por=user).exists()
     form = NewLavaderoForm()
     formulario = NewTarifaForm()
     if request.method == "POST":
@@ -63,10 +64,16 @@ def registroLavadero(request):
         if form.is_valid():
             lavadero = form.save(commit=False)
             lavadero.creado_por = user
-
             lavadero.save()
+            for i in range(4):
+                init_tarifa = Tarifa()
+                init_tarifa.tipo = init_tarifa.TIPOS_LAVADO[i][0]
+                init_tarifa.monto = 0.0
+                init_tarifa.lavadero = lavadero
+                init_tarifa.save()
+           
             return redirect("inicio")
-    return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form})
+    return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form, "tiene_lavadero":usuario_tiene_lavadero})
 
 
 
@@ -87,6 +94,47 @@ def register_request(request):
     form = NewUserForm()
     return render(request=request, template_name="register.html", context={"register_form":form})
 
+@login_required(login_url='/cuentas/login/')
+def miLavadero(request):
+    try:
+        user = request.user
+        lavadero = Lavadero.objects.get(creado_por=user)
+        TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False)
+    except Lavadero.DoesNotExist:
+        lavadero = None
+    if lavadero:
+        if request.method == "POST":
+            formset = TarifaInlineFormset(request.POST, instance=lavadero)
+            if formset.is_valid():
+                formset.save()
+                return redirect("lavaderos")
+        else:
+            formset = TarifaInlineFormset(instance=lavadero)
+        return render(request, 'milavadero.html', {'tarifa_form':formset})
+    else:
+        return redirect("lavaderos")      
+    """
+    form = formset_factory(NewTarifaForm, extra=4)
+    try:
+        user = request.user
+        lavadero = Lavadero.objects.get(creado_por=user)
+    except Lavadero.DoesNotExist:
+        lavadero = None
+    if lavadero:
+        if request.method == "POST":
+            formset = form(request.POST)
+            Tarifa.objects.filter(lavadero=lavadero).delete()
+            for f in formset:
+                if f.is_valid():
+                    tarifa = f.save(commit=False)
+                    tarifa.lavadero = lavadero
+                    if tarifa.monto != None:
+                        tarifa.save()
+                        
+        return render(request, 'milavadero.html', {'lavadero': lavadero, 'tarifa_form': form})
+    else:
+        return redirect("lavaderos")
+    """
 
 def activateEmail(request, user, to_email):
     mail_subject = 'Confirma tu cuenta de Lavadero Online!.'

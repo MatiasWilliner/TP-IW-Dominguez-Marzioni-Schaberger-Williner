@@ -31,3 +31,5 @@ class NewTarifaForm(forms.ModelForm):
         model = Tarifa
         fields = ['tipo', 'monto']
 
+
+

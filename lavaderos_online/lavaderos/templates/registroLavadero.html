@@ -12,6 +12,15 @@
   
 {% block contentmain %}
 <div class="contentlavadero">
+    {% if tiene_lavadero %}
+    <div class="topcontentlavadero">
+        <div class="namelavadero">Registro Lavadero</div>
+    </div>
+    <div class="bienvenidamensaje">
+        <div class="bienvenidoregistro">¡Ya tenés tu lavadero creado!</div>
+        <div class="bienvenidoregistro">De todas formas, podés modificar los horarios y las tarifas en <a href="{% url 'milavadero' %}">MI LAVADERO</a>.</div>
+    </div>
+    {% else %}
     <div class="topcontentlavadero">
         <img class="avatar" src="" alt="">
         <div class="namelavadero">Registro Lavadero</div>
@@ -30,5 +39,6 @@
             <input type="submit" value="REGISTRARSE">
         </div>         
     </div>
+    {% endif %}   
 </div>
 {% endblock %}
