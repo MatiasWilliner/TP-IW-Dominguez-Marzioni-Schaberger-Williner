@@ -40,7 +40,7 @@
                 <li class="nav-item">
                 <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
-                {% if user.is_authenticated %}                  
+                {% if user.is_authenticated %}                 
                 <li class="nav-item">
                 <a class="nav-link" href="/milavadero/">MI LAVADERO</a>
                 </li>
@@ -75,6 +75,11 @@
                                 <option selected value="C">CERRADO</option>
                                 {% else %}
                                 <option value="C">CERRADO</option>
+                                {% endif %}
+                                {% if estadoselect == "D" %}
+                                <option selected value="D">DISPONIBLE</option>
+                                {% else %}
+                                <option value="D">DISPONIBLE</option>
                                 {% endif %}
                             <input class="filtroboton" type="submit" value="Filtrar" />
                         </div>

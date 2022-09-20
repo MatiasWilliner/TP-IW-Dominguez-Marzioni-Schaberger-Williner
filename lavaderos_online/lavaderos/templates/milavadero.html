@@ -1,32 +1,51 @@
 {% extends "basic.html" %}
 {% load static %}
+{% load crispy_forms_tags %}   
+
+{% block header %}
+<link href="{% static 'lavaderos/css/milavadero.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
 
 {% block contentmain %}
-<form method="POST">
-    {% csrf_token %}
-    {{ estado_form.management_form }}
-    {% for f in estado_form %}
-        {{f}}
-        <p></p>
-    {% endfor %}
-    <button type="submit" name="submitEstado">GUARDAR</button>
-</form>
-<form method="POST">
-    {% csrf_token %}
-    {{ tarifa_form.management_form }}
-    {% for f in tarifa_form %}
-        {{f}}
-        <p></p>
-    {% endfor %}
-    <button type="submit" name="submitTarifa">GUARDAR</button>
-</form>
-<form method="POST">
-    {% csrf_token %}
-    {{ horario_form.management_form }}
-    {% for f in horario_form %}
-        {{f}}
-        <p></p>
-    {% endfor %}
-    <button type="submit" name="submitHorario">GUARDAR</button>
-</form>
+<div class="milavadero">
+    <div class="topmilavadero">
+        <form method="POST">
+            {% csrf_token %}
+            {{ estado_form.management_form|crispy }}
+            {% for f in estado_form %}
+                {{f}}
+                <p></p>
+            {% endfor %}
+            <div class="d-grid gap-2 col-6 mx-auto"><button class="btn btn-primary" type="submit" name="submitEstado">GUARDAR</button></div>
+            
+        </form>
+    </div>
+    <div class="middlemilavadero">
+        <div class="formtarhor">
+            <form method="POST">
+                {% csrf_token %}
+                {{ tarifa_form.management_form |crispy }}
+                {% for f in tarifa_form %}
+                    {{f}}
+                    <p></p>
+                {% endfor %}
+                <div class="d-grid gap-2 col-2 mx-auto"><button class="btn btn-primary" type="submit" name="submitTarifa">GUARDAR</button></div>
+                
+            </form>
+        </div>
+        <div class="formtarhor">
+            <form method="POST">
+                {% csrf_token %}
+                {{ horario_form.management_form |crispy }}
+                {% for f in horario_form %}
+                    {{f}}
+                    <p></p>
+                {% endfor %}
+                <div class="d-grid gap-2 col-2 mx-auto"><button class="btn btn-primary" type="submit" name="submitHorario">GUARDAR</button></div>
+                    
+            </form>
+        </div>  
+    </div>
+
+</div>
 {% endblock %}

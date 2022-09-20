@@ -43,23 +43,94 @@
                         <input type="text" class="form-control" aria-label="Sizing example input" readonly value="{{lavadero.direccion}}" aria-describedby="inputGroup-sizing-default">
                     </div>
                     {% if lavadero.estado == "D" %}
-                        <a><button class="btn btn-primary">¡Solicitar Lavado YA!</button></a>
+                    <div class="d-grid gap-2 col-4 mx-auto mt-4"><a><button class="btn btn-primary">¡Solicitar Lavado YA!</button></a></div>
                     {% endif %}
                 </div>                   
-            </div>
+            </div>              
+        </div>
+        <div class="middlecard">
+            <div class="cardlavaderoprecio">
+                <div class="horario">
+                    <div class="titulocard">HORARIOS</div>
+                    <div class="input-group">
+                    <span class="input-group-text rl">Lunes</span>
+                    <input type="text" readonly aria-label="First name" value="{{lunes.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{lunes.hasta}}" class="form-control">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text rl">Martes</span>
+                    <input type="text" readonly aria-label="First name" value="{{martes.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{martes.hasta}}" class="form-control">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text rl">Miércoles</span>
+                    <input type="text" readonly aria-label="First name" value="{{miercoles.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{miercoles.hasta}}" class="form-control">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text rl">Jueves</span>
+                    <input type="text" readonly aria-label="First name" value="{{jueves.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{jueves.hasta}}" class="form-control">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text rl ">Viernes</span>
+                    <input type="text" readonly aria-label="First name" value="{{viernes.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{viernes.hasta}}" class="form-control">
+                </div>
+                    <div class="input-group">
+                    <span class="input-group-text rl">Sábado</span>
+                    <input type="text" readonly aria-label="First name" value="{{sabado.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{sabado.hasta}}" class="form-control">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text rl">Domingo</span>
+                    <input type="text" readonly aria-label="First name" value="{{domingo.desde}}" class="form-control">
+                    <input type="text" readonly aria-label="Last name" value="{{domingo.hasta}}" class="form-control">
+                </div>   
+
+                </div>
+            </div> 
             <div class="cardlavaderoprecio">
                 <div class="titulocard">TARIFAS</div>
-                {% for tarifa in tarifas %}
-                <div class="input-group mb-3">
-                    <span class="input-group-text rl">{{tarifa.tipo}}</span>
-                    <span class="input-group-text">$</span>
-                    <input type="text" class="form-control" readonly value="{{tarifa.monto}}">
+                <div class="tarifa">
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <div class="input-group mb-3"> 
+                            <span class="input-group-text rl">Tarifa Moto</span>
+                            <span class="input-group-text">$</span>
+                            <input readonly value="{{tarifaMoto.monto}}" type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text rl">Tarifa Auto</span>
+                            <span class="input-group-text">$</span>
+                            <input readonly value="{{tarifaAuto.monto}}" type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                        </div>
+    
+                    </div>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text rl">Tarifa PickUps</span>
+                            <span class="input-group-text">$</span>
+                            <input readonly value="{{tarifaPickup.monto}}" type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text rl">Tarifa Camion</span>
+                            <span class="input-group-text">$</span>
+                            <input readonly value="{{tarifaCamion.monto}}" type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                        </div> 
+                    </div>
+
                 </div>
-                {% endfor %}    
-            </div>               
+                
+
+            </div>
         </div>
+        
         <div class="bottomcardlavadero">
-            
+            CONTACTO - REDES
         </div>
     </div>
 {% endblock %}

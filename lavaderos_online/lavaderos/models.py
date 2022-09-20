@@ -42,7 +42,7 @@ class Tarifa(models.Model):
         choices=TIPOS_LAVADO,
     )
     lavadero = models.ForeignKey(Lavadero, on_delete=models.CASCADE)
-    monto = models.DecimalField(max_digits=5, decimal_places=2)
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         constraints = [
