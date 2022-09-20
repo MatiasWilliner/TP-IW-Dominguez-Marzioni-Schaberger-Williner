@@ -181,7 +181,7 @@ def miLavadero(request):
             
         return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado})
     else:
-        return redirect("lavaderos")      
+        return redirect("registrolavadero")      
 
 
 
