@@ -1,3 +1,4 @@
+from datetime import datetime, time
 from unicodedata import name
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -81,13 +82,22 @@ def registroLavadero(request):
             lavadero = form.save(commit=False)
             lavadero.creado_por = user
             lavadero.save()
+
             for i in range(4):
                 init_tarifa = Tarifa()
                 init_tarifa.tipo = init_tarifa.TIPOS_LAVADO[i][0]
                 init_tarifa.monto = 0.0
                 init_tarifa.lavadero = lavadero
                 init_tarifa.save()
-           
+            
+            for i in range(7):
+                init_horario = Horario()
+                init_horario.dia = init_horario.DIAS[i][0]
+                init_horario.desde = time(0,0,0)
+                init_horario.hasta = time(0,0,0)
+                init_horario.lavadero = lavadero
+                init_horario.save()
+
             return redirect("inicio")
     return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form, "tiene_lavadero":usuario_tiene_lavadero})
 
@@ -116,41 +126,26 @@ def miLavadero(request):
         user = request.user
         lavadero = Lavadero.objects.get(creado_por=user)
         TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False)
+        HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('dia', 'desde', 'hasta'), extra=0, can_delete=False)
     except Lavadero.DoesNotExist:
         lavadero = None
     if lavadero:
-        if request.method == "POST":
-            formset = TarifaInlineFormset(request.POST, instance=lavadero)
-            if formset.is_valid():
-                formset.save()
-                return redirect("lavaderos")
-        else:
-            formset = TarifaInlineFormset(instance=lavadero)
-        return render(request, 'milavadero.html', {'tarifa_form':formset})
+        formset_tarifa = TarifaInlineFormset(instance=lavadero)
+        formset_horario = HorarioInlineFormset(instance=lavadero)
+        if request.method == "POST" and 'submitTarifa' in request.POST:
+            formset_tarifa = TarifaInlineFormset(request.POST, instance=lavadero)
+            if formset_tarifa.is_valid():
+                formset_tarifa.save()
+                return redirect("milavadero")
+        elif request.method == "POST" and 'submitHorario' in request.POST:
+            formset_horario = HorarioInlineFormset(request.POST, instance=lavadero)
+            if formset_horario.is_valid():
+                formset_horario.save()
+                return redirect("milavadero")
+            
+        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario})
     else:
         return redirect("lavaderos")      
-    """
-    form = formset_factory(NewTarifaForm, extra=4)
-    try:
-        user = request.user
-        lavadero = Lavadero.objects.get(creado_por=user)
-    except Lavadero.DoesNotExist:
-        lavadero = None
-    if lavadero:
-        if request.method == "POST":
-            formset = form(request.POST)
-            Tarifa.objects.filter(lavadero=lavadero).delete()
-            for f in formset:
-                if f.is_valid():
-                    tarifa = f.save(commit=False)
-                    tarifa.lavadero = lavadero
-                    if tarifa.monto != None:
-                        tarifa.save()
-                        
-        return render(request, 'milavadero.html', {'lavadero': lavadero, 'tarifa_form': form})
-    else:
-        return redirect("lavaderos")
-    """
 
 
 
