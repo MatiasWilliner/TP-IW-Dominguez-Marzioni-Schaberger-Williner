@@ -55,16 +55,45 @@ def basic(request):
 
 # PERFIL DE LAVADERO  #Muestra la info de cada Lavadero de forma detallada #Si es un usuario cliente podrá solicitar Atención # Si es dueño del lavadero edbería poder editar esta info
 def lavadero(request,id):
+    print('ENTRO A LAVADERO')
     try:
         lavadero = Lavadero.objects.get(pk=id)
-        print(lavadero)
-        tarifas = Tarifa.objects.filter(lavadero=lavadero)      
-        print(repr(tarifas))
+
+        tarifas = Tarifa.objects.filter(lavadero=lavadero)
+        tarifaMoto = tarifas.get(tipo='M')
+        tarifaAuto = tarifas.get(tipo='A')
+        tarifaPickup = tarifas.get(tipo='P')
+        tarifaCamion = tarifas.get(tipo='C')
+        
+        horarios = Horario.objects.filter(lavadero=lavadero)
+        lunes = horarios.get(dia='L')
+        martes = horarios.get(dia='M')
+        miercoles = horarios.get(dia='X')
+        jueves = horarios.get(dia='J')
+        viernes = horarios.get(dia='V')
+        sabado = horarios.get(dia='S')
+        domingo = horarios.get(dia='D')
+
+        context = {
+            'lavadero': lavadero,
+            'tarifaMoto' : tarifaMoto,
+            'tarifaAuto' : tarifaAuto,
+            'tarifaPickup' : tarifaPickup,
+            'tarifaCamion' : tarifaCamion,
+            'lunes' : lunes,
+            'martes' : martes,
+            'miercoles': miercoles,
+            'jueves' : jueves,
+            'viernes' : viernes,
+            'sabado' : sabado,
+            'domingo' : domingo
+        }            
     except Lavadero.DoesNotExist:
         lavadero = None
     if lavadero:
-        return render(request, 'lavadero.html', {'lavadero': lavadero, 'tarifas': tarifas})
+        return render(request, 'lavadero.html', context)
     else:
+        print(lavadero)
         return redirect("lavaderos")
 
 
