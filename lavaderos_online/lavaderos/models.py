@@ -7,7 +7,8 @@ class Lavadero(models.Model):
     ESTADOS = [
         ('A', 'Abierto'),
         ('C', 'Cerrado'),
-        ('I', 'Inactivo')
+        ('I', 'Inactivo'),
+        ('D', 'Disponible'),
     ]
 
     nombre = models.CharField(max_length=128)

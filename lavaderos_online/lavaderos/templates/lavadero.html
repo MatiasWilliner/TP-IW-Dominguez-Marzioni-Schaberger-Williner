@@ -42,6 +42,9 @@
                         <span class="input-group-text ml" id="inputGroup-sizing-default">Dirección</span>
                         <input type="text" class="form-control" aria-label="Sizing example input" value="{{lavadero.direccion}}" aria-describedby="inputGroup-sizing-default">
                     </div>
+                    {% if lavadero.estado == "D" %}
+                        <a><button class="btn btn-primary">¡Solicitar Lavado YA!</button></a>
+                    {% endif %}
                 </div>                   
             </div>
             <div class="cardlavaderoprecio">
@@ -65,7 +68,7 @@
                     <span class="input-group-text rl">Tarifa Camion</span>
                     <span class="input-group-text">$</span>
                     <input disabled value="{{tarifaCamion.monto}}" type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                </div>
+                </div>               
             </div>               
         </div>
         <div class="bottomcardlavadero">

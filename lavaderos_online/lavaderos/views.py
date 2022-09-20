@@ -95,7 +95,7 @@ def registroLavadero(request):
                 init_horario.lavadero = lavadero
                 init_horario.save()
 
-            return redirect("inicio")
+            return redirect("milavadero")
     return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form, "tiene_lavadero":usuario_tiene_lavadero})
 
 
