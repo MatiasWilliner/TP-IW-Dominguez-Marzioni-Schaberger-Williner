@@ -43,18 +43,35 @@ def lavadero(request,id):
     print('ENTRO A LAVADERO')
     try:
         lavadero = Lavadero.objects.get(pk=id)
+
         tarifas = Tarifa.objects.filter(lavadero=lavadero)
         tarifaMoto = tarifas.get(tipo='M')
         tarifaAuto = tarifas.get(tipo='A')
         tarifaPickup = tarifas.get(tipo='P')
         tarifaCamion = tarifas.get(tipo='C')
         
+        horarios = Horario.objects.filter(lavadero=lavadero)
+        lunes = horarios.get(dia='L')
+        martes = horarios.get(dia='M')
+        miercoles = horarios.get(dia='X')
+        jueves = horarios.get(dia='J')
+        viernes = horarios.get(dia='V')
+        sabado = horarios.get(dia='S')
+        domingo = horarios.get(dia='D')
+
         context = {
             'lavadero': lavadero,
             'tarifaMoto' : tarifaMoto,
             'tarifaAuto' : tarifaAuto,
             'tarifaPickup' : tarifaPickup,
             'tarifaCamion' : tarifaCamion,
+            'lunes' : lunes,
+            'martes' : martes,
+            'miercoles': miercoles,
+            'jueves' : jueves,
+            'viernes' : viernes,
+            'sabado' : sabado,
+            'domingo' : domingo
         }            
     except Lavadero.DoesNotExist:
         lavadero = None
