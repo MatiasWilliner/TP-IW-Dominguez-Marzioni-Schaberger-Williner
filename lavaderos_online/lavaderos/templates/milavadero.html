@@ -10,7 +10,15 @@
         {{f}}
         <p></p>
     {% endfor %}
-    <button type="submit">GUARDAR</button>
+    <button type="submit" name="submitTarifa">GUARDAR</button>
 </form>
-
+<form method="POST">
+    {% csrf_token %}
+    {{ horario_form.management_form }}
+    {% for f in horario_form %}
+        {{f}}
+        <p></p>
+    {% endfor %}
+    <button type="submit" name="submitHorario">GUARDAR</button>
+</form>
 {% endblock %}
