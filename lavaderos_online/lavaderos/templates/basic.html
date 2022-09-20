@@ -17,7 +17,7 @@
     <div class="page">
         <div class="navbar">
             <div class="leftnavbar">
-                <i class="iconnavbar fa-solid fa-bars"></i>
+                <i class="iconnavbar menu__active fa-solid fa-bars"></i>
 
             </div>
             <div class="centernavbar">
@@ -40,7 +40,7 @@
                 <li class="nav-item">
                 <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
-                {% if user.is_authenticated %}                  
+                {% if user.is_authenticated %}                 
                 <li class="nav-item">
                 <a class="nav-link" href="/milavadero/">MI LAVADERO</a>
                 </li>
@@ -48,7 +48,7 @@
                     <a class="nav-link" href="/registrolavadero/">REGISTAR LAVADERO</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                    <a class="nav-link" href="{% url 'logout' %}">CERRAR SESIÓN</a>
                 </li>
                 {% endif %}
                 
@@ -75,6 +75,11 @@
                                 <option selected value="C">CERRADO</option>
                                 {% else %}
                                 <option value="C">CERRADO</option>
+                                {% endif %}
+                                {% if estadoselect == "D" %}
+                                <option selected value="D">DISPONIBLE</option>
+                                {% else %}
+                                <option value="D">DISPONIBLE</option>
                                 {% endif %}
                             <input class="filtroboton" type="submit" value="Filtrar" />
                         </div>
@@ -108,8 +113,7 @@
                         </div>
                         <div class="bottomcard">
                             <a href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas Info</button></a> 
-                        </div>
-                        
+                        </div>    
                     </div> 
                     {% endfor %}               
                 </div>
@@ -117,6 +121,7 @@
             </div>
         </div>
     </div>
+    <script src=" {% static 'lavaderos/js/Basic.js' %}"></script>
 </body>
 </html>
 

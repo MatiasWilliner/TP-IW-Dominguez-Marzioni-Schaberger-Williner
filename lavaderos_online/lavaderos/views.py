@@ -16,14 +16,22 @@ from django.core.mail import EmailMessage
 from lavaderos.tokens import account_activation_token
 # Create your views here.
 
-# Página de inicio del sitio.
+# LANDINGPAGE #Si el usuario está registrado se redigirá al home(ListadoLavadero) Sino LandingPage
 def inicio(request):
     if request.user.is_authenticated:
         return redirect("lavaderos")
-    print ("Hola mundo")
     return render(request, 'inicio.html', {})
 
-#NICO
+
+
+
+
+
+
+
+
+
+# HOME - LISTADO LAVADEROS #No nesesita estar logueado para acceder a esta parte #Si esta logueado tendrá un sidebar con opciones extras
 def basic(request):
     user = request.user
     featured_filter = 'T'
@@ -38,7 +46,14 @@ def basic(request):
     return render(request,'basic.html',{'lavaderolist':lavadero,'estadoselect':featured_filter,"user":user})
     
     
-#NICO
+
+
+
+
+
+
+
+# PERFIL DE LAVADERO  #Muestra la info de cada Lavadero de forma detallada #Si es un usuario cliente podrá solicitar Atención # Si es dueño del lavadero edbería poder editar esta info
 def lavadero(request,id):
     print('ENTRO A LAVADERO')
     try:
@@ -167,6 +182,76 @@ def miLavadero(request):
         return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado})
     else:
         return redirect("registrolavadero")      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def activateEmail(request, user, to_email):
     mail_subject = 'Confirma tu cuenta de Lavadero Online!.'
