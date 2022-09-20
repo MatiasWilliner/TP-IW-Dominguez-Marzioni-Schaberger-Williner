@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block contentmain %}
-
+<form method="POST">
+    {% csrf_token %}
+    {{ estado_form.management_form }}
+    {% for f in estado_form %}
+        {{f}}
+        <p></p>
+    {% endfor %}
+    <button type="submit" name="submitEstado">GUARDAR</button>
+</form>
 <form method="POST">
     {% csrf_token %}
     {{ tarifa_form.management_form }}
