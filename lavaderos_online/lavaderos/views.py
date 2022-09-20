@@ -98,7 +98,7 @@ def registroLavadero(request):
                 init_horario.lavadero = lavadero
                 init_horario.save()
 
-            return redirect("inicio")
+            return redirect("milavadero")
     return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form, "tiene_lavadero":usuario_tiene_lavadero})
 
 
@@ -127,11 +127,13 @@ def miLavadero(request):
         lavadero = Lavadero.objects.get(creado_por=user)
         TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False)
         HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('dia', 'desde', 'hasta'), extra=0, can_delete=False)
+        EstadoInlineFormset = inlineformset_factory(User, Lavadero, fields=('estado',), extra=0, can_delete=False)
     except Lavadero.DoesNotExist:
         lavadero = None
     if lavadero:
         formset_tarifa = TarifaInlineFormset(instance=lavadero)
         formset_horario = HorarioInlineFormset(instance=lavadero)
+        formset_estado = EstadoInlineFormset(instance=user)
         if request.method == "POST" and 'submitTarifa' in request.POST:
             formset_tarifa = TarifaInlineFormset(request.POST, instance=lavadero)
             if formset_tarifa.is_valid():
@@ -142,7 +144,13 @@ def miLavadero(request):
             if formset_horario.is_valid():
                 formset_horario.save()
                 return redirect("milavadero")
-        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario})
+        elif request.method == "POST" and 'submitEstado' in request.POST:
+            formset_estado = EstadoInlineFormset(request.POST, instance=user)
+            if formset_estado.is_valid():
+                formset_estado.save()
+                return redirect("milavadero")
+            
+        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado})
     else:
         return redirect("lavaderos")      
 
