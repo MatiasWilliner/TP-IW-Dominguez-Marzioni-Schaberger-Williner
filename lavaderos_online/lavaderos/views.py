@@ -142,7 +142,6 @@ def miLavadero(request):
             if formset_horario.is_valid():
                 formset_horario.save()
                 return redirect("milavadero")
-            
         return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario})
     else:
         return redirect("lavaderos")      
