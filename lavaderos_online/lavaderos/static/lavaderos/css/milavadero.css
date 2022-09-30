@@ -30,3 +30,41 @@
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
+
+.solicitudeslavado{
+    background-color: white;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.titulosolicitudlavado{
+    background-color: #223E8C;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.itemsolictudlavado{
+    width: 310px;
+    border: 0.5px solid rgb(202, 202, 202);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.botonesrespondersolicitud{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-item-solicitud-lavado{
+    width: 130px;
+}
+
+.contenido-solicitudes-lavado{
+    display: grid;
+	grid-gap: 20px;
+	grid-template-columns: repeat(auto-fill, 320px);
+}
