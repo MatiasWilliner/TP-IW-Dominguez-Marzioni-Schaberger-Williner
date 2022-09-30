@@ -1,8 +1,9 @@
+from dataclasses import field
 from pyexpat import model
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Lavadero, Tarifa
+from .models import Lavadero, SolicitudLavadero, Tarifa
 
 # Aca abajo creamos los forms
 
@@ -30,6 +31,11 @@ class NewTarifaForm(forms.ModelForm):
     class Meta:
         model = Tarifa
         fields = ['tipo', 'monto']
+
+class NewSolicitarLavado(forms.ModelForm):
+    class Meta:
+        model = SolicitudLavadero
+        fields = ['tipo']
 
 
 

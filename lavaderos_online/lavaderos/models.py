@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -76,3 +77,20 @@ class Horario(models.Model):
                 fields=['lavadero', 'dia'], name ='unique_lavadero_dia_combination'
             )
         ]
+
+class SolicitudLavadero(models.Model):
+    TIPOS_LAVADO = [
+        ('M', 'Moto'),
+        ('A', 'Auto'),
+        ('P', 'Pickup'),
+        ('C', 'Camion')
+    ]
+
+    lavadero = models.ForeignKey(Lavadero, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(User, on_delete=models.CASCADE)
+    tipo = models.CharField(
+        max_length=1,
+        choices=TIPOS_LAVADO,
+    )
+    fecha = models.DateTimeField(auto_now_add=True)
+    aceptado = models.BooleanField(null=True, default=None)

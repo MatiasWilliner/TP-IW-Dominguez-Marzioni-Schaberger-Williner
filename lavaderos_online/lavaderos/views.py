@@ -2,7 +2,7 @@ from datetime import datetime, time
 from unicodedata import name
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import NewUserForm, NewLavaderoForm, NewTarifaForm
+from .forms import NewUserForm, NewLavaderoForm, NewTarifaForm, NewSolicitarLavado
 from .models import Lavadero
 from django.forms import formset_factory, inlineformset_factory
 from django.contrib.auth import login, get_user_model
@@ -74,6 +74,9 @@ def lavadero(request,id):
         sabado = horarios.get(dia='S')
         domingo = horarios.get(dia='D')
 
+        #DETERMINO SI TIENE UNA SOLICITUD DE LAVADO SIN RESPONDER PARA NO MOSTRAR EL BOTON DE SOLICITAR LAVADO YA Y EVITAR EL FLOOD
+        esperando_solicitud = SolicitudLavadero.objects.filter(cliente=request.user, lavadero=lavadero, aceptado=None).exists()
+        print(esperando_solicitud)
         context = {
             'lavadero': lavadero,
             'tarifaMoto' : tarifaMoto,
@@ -86,12 +89,29 @@ def lavadero(request,id):
             'jueves' : jueves,
             'viernes' : viernes,
             'sabado' : sabado,
-            'domingo' : domingo
+            'domingo' : domingo,
+            'esperando_solicitud' : esperando_solicitud,
         }            
     except Lavadero.DoesNotExist:
         lavadero = None
     if lavadero:
-        return render(request, 'lavadero.html', context)
+        if request.method == "POST":
+            print('post')
+            form_solicitar_lavado = NewSolicitarLavado(request.POST)
+            if form_solicitar_lavado.is_valid():
+                print("es form valido")
+                solicitud = form_solicitar_lavado.save(commit=False)
+                solicitud.lavadero = lavadero
+                solicitud.cliente = request.user
+                solicitud.aceptado = None
+                solicitud.save()
+                #AGREGAR UN MESSAGE QUE LE AVISE AL USUARIO QUE SE SOLICITÓ CORRECTAMENTE
+                messages.success(request, "Solicitud enviada! Esperá por la confirmación.")
+                context['solicitar_lavado'] = form_solicitar_lavado
+                return render(request, template_name='lavadero.html', context=context)
+        else:
+            context['solicitar_lavado'] = NewSolicitarLavado()
+            return render(request, 'lavadero.html', context)
     else:
         print(lavadero)
         return redirect("lavaderos")
