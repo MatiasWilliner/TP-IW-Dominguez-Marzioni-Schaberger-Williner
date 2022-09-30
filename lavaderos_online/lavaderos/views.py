@@ -205,6 +205,10 @@ def miLavadero(request):
 
 
 
+@login_required(login_url='/cuentas/login/')
+def solicitudLavado(request):
+    return render(request, 'solicitudLavado.html', {})
+
 
 
 
