@@ -107,6 +107,7 @@ def lavadero(request,id):
                 solicitud.save()
                 #AGREGAR UN MESSAGE QUE LE AVISE AL USUARIO QUE SE SOLICITÓ CORRECTAMENTE
                 messages.success(request, "Solicitud enviada! Esperá por la confirmación.")
+                mailDueño(request, lavadero.creado_por, lavadero.creado_por.email, request.user, solicitud)
                 context['solicitar_lavado'] = form_solicitar_lavado
                 return render(request, template_name='lavadero.html', context=context)
         else:
@@ -207,7 +208,35 @@ def miLavadero(request):
 
 @login_required(login_url='/cuentas/login/')
 def solicitudLavado(request):
-    return render(request, 'solicitudLavado.html', {})
+    print("ENTRO A LISTADO DE SOLICITUDES")
+    try:
+        user = request.user
+        lavadero = Lavadero.objects.get(creado_por=user)
+    except Lavadero.DoesNotExist:
+        lavadero = None
+
+    if lavadero:
+        try:
+            solicitudes = SolicitudLavadero.objects.filter(lavadero=lavadero, aceptado=None)
+            if request.method == "POST":
+                id_solicitud = request.POST["id_solicitud"]
+                solicitud = SolicitudLavadero.objects.get(pk=id_solicitud)
+                cliente = solicitud.cliente
+                if 'aceptar' in request.POST:                
+                    solicitud.aceptado = True
+                    lavadero.estado = 'A'
+                    lavadero.save()                                      
+                else:
+                    print("RECHAZADO")
+                    solicitud.aceptado = False
+                solicitud.save()
+                mailSolicitante(request, cliente, lavadero.creado_por.email, solicitud, lavadero) 
+        except SolicitudLavadero.DoesNotExist:
+            solicitudes = []
+    else:
+        return redirect("lavaderos")
+
+    return render(request, 'solicitudLavado.html', {'solicitudes':solicitudes})
 
 
 
@@ -311,3 +340,42 @@ def activate(request, uidb64, token):
         messages.error(request, 'Link de activación inválido!')
     
     return redirect('inicio')
+
+# MAIL PARA EL DUEÑO
+def mailDueño(request, dueño_lavadero, to_email, cliente, solicitud):
+    mail_subject = 'Solicitud de turno de cliente'
+    message = render_to_string('template_solicitud_para_dueño.html', {
+        'dueño_lavadero': dueño_lavadero,
+        'protocol': 'https' if request.is_secure() else 'http',
+        'domain': get_current_site(request).domain,
+        'cliente': cliente,
+        'solicitud': solicitud
+    })
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    email.content_subtype = "html"
+    if email.send():
+        messages.success(request, f'Estimado <b>{dueño_lavadero.username}</b>, ha recibido una solicitud: <b>{to_email}</b>')
+    else:
+        messages.error(request, f'Ha ocurrido un error enviado un mail a {to_email}')
+
+# MAIL PARA EL CLIENTE SOLICITANTE DE LAVADO
+def mailSolicitante(request, cliente, to_email, solicitud, lavadero):
+    mail_subject = f'Ha recibido una respuesta de {lavadero.nombre}'
+    if solicitud.aceptado:
+        estado = "ACEPTADA"
+    else:
+        estado = "RECHAZADA"
+    message = render_to_string('template_respuesta_solicitud.html', {
+        'cliente': cliente,
+        'domain': get_current_site(request).domain,
+        'protocol': 'https' if request.is_secure() else 'http',
+        'lavadero': lavadero,
+        'solicitud': solicitud,
+        'estado' : estado
+    })
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    email.content_subtype = "html"
+    if email.send():
+        messages.success(request, f'Estimado <b>{cliente.username}</b>, su solicitud ha sido respondida en <b>{to_email}</b>')
+    else:
+        messages.error(request, f'Ha ocurrido un error enviado un mail a {to_email}')

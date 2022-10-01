@@ -11,109 +11,47 @@
 {% block contentmain %}
 <div class="solicitudeslavado">
     <div class="titulosolicitudlavado">
-        Solicitudes de lavado
+        Solicitudes de Lavado
     </div>
     <div class="contenido-solicitudes-lavado">
-        <div class="itemsolictudlavado">
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Cliente</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
+        {% if solicitudes %}
+            {% for solicitud in solicitudes %}
+                <div class="itemsolictudlavado">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Cliente</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{solicitud.cliente.username}}" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Fecha</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{solicitud.fecha}}" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Tipo Vehiculo</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" value="{{solicitud.get_tipo_display}}" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                
+                    <div class="botonesrespondersolicitud">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="id_solicitud" value="{{solicitud.id}}">
+                            <input type="submit" value="Aceptar" class="btn btn-success" name="aceptar">
+                        </form>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="id_solicitud" value="{{solicitud.id}}">
+                            <input type="submit" value="Rechazar" class="btn btn-danger" name="rechazar">
+                        </form>
+                    </div>           
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center"></div>
+                <br>           
+                <h3>NO HAY SOLICITUDES</h3>
+                <br>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Fecha</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Tipo Vehiculo</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-           
-            <div class="botonesrespondersolicitud">
-                <button class="btn btn-primary">
-                    ACEPTAR
-                </button>
-                <button class="btn btn-danger">
-                    RECHAZAR
-                </button>
-            </div> 
-          
-        </div>
-
-        <div class="itemsolictudlavado">
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Cliente</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Fecha</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Tipo Vehiculo</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-           
-            <div class="botonesrespondersolicitud">
-                <button class="btn btn-primary">
-                    ACEPTAR
-                </button>
-                <button class="btn btn-danger">
-                    RECHAZAR
-                </button>
-            </div> 
-        </div>
-
-        <div class="itemsolictudlavado">
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Cliente</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Fecha</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Tipo Vehiculo</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-           
-            <div class="botonesrespondersolicitud">
-                <button class="btn btn-primary">
-                    ACEPTAR
-                </button>
-                <button class="btn btn-danger">
-                    RECHAZAR
-                </button>
-            </div> 
-        </div>
-        <div class="itemsolictudlavado">
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Cliente</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Fecha</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text ml input-item-solicitud-lavado" id="inputGroup-sizing-default">Tipo Vehiculo</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" value="Valor" aria-describedby="inputGroup-sizing-default">
-            </div>
-           
-            <div class="botonesrespondersolicitud">
-                <button class="btn btn-primary">
-                    ACEPTAR
-                </button>
-                <button class="btn btn-danger">
-                    RECHAZAR
-                </button>
-            </div> 
-        </div>
-
-
-    </div>
-
-    
+        {% endif %}        
+    </div>   
 </div>
 
 {% endblock %}
