@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import NewUserForm, NewLavaderoForm, NewTarifaForm, NewSolicitarLavado
 from .models import Lavadero
-from django.forms import formset_factory, inlineformset_factory
+from django.forms import inlineformset_factory
 from django.contrib.auth import login, get_user_model
 from django.contrib import messages
 from lavaderos.models import *
@@ -23,14 +23,6 @@ def inicio(request):
     return render(request, 'inicio.html', {})
 
 
-
-
-
-
-
-
-
-
 # HOME - LISTADO LAVADEROS #No nesesita estar logueado para acceder a esta parte #Si esta logueado tendrá un sidebar con opciones extras
 def basic(request):
     user = request.user
@@ -46,13 +38,6 @@ def basic(request):
     return render(request,'basic.html',{'lavaderolist':lavadero,'estadoselect':featured_filter,"user":user})
     
     
-
-
-
-
-
-
-
 # PERFIL DE LAVADERO  #Muestra la info de cada Lavadero de forma detallada #Si es un usuario cliente podrá solicitar Atención # Si es dueño del lavadero edbería poder editar esta info
 def lavadero(request,id):
     print('ENTRO A LAVADERO')
@@ -118,7 +103,6 @@ def lavadero(request,id):
         return redirect("lavaderos")
 
 
-
 #NICO
 @login_required(login_url='/cuentas/login/')
 def registroLavadero(request):    
@@ -152,10 +136,10 @@ def registroLavadero(request):
     return render(request=request,template_name='registroLavadero.html', context={"tarifas_lavadero":formulario, "register_lavadero":form, "tiene_lavadero":usuario_tiene_lavadero})
 
 
-
 @login_required(login_url='/cuentas/login/')
 def perfil(request):
     return render(request, 'perfil.html', {})
+
 
 def register_request(request):
     if request.method == "POST":
@@ -169,6 +153,7 @@ def register_request(request):
         messages.error(request, "Registro sin éxito. Información inválida.")
     form = NewUserForm()
     return render(request=request, template_name="register.html", context={"register_form":form})
+
 
 @login_required(login_url='/cuentas/login/')
 def miLavadero(request):
@@ -203,7 +188,6 @@ def miLavadero(request):
         return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado})
     else:
         return redirect("registrolavadero")      
-
 
 
 @login_required(login_url='/cuentas/login/')

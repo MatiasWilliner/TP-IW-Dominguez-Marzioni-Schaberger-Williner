@@ -141,13 +141,19 @@ GRAPH_MODELS = {
     "group_models": True,
 }
 
+# EMAIL DATA
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_FROM = 'site.lavaderos@gmail.com'
 EMAIL_HOST_USER = 'site.lavaderos@gmail.com'
-EMAIL_HOST_PASSWORD = 'czkkjhjwgrdxhqst'
+EMAIL_HOST_PASSWORD = os.getenv('DJANGO_EMAIL_HOST_PASSWORD','')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 PASSWORD_RESET_TIMEOUT = 14400
+
+# SETEO IMPRIMIR MAILS POR CONSOLA EN LOCAL
+if not os.environ.get("RUNNING_INSIDE_HEROKU", False):
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 django_heroku.settings(locals())
