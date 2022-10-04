@@ -41,6 +41,8 @@ def basic(request):
     
 # PERFIL DE LAVADERO  #Muestra la info de cada Lavadero de forma detallada #Si es un usuario cliente podrá solicitar Atención # Si es dueño del lavadero edbería poder editar esta info
 def lavadero(request,id):
+    print(request.user)
+    print(type(request.user))
     print('ENTRO A LAVADERO')
     try:
         lavadero = Lavadero.objects.get(pk=id)
@@ -61,7 +63,10 @@ def lavadero(request,id):
         domingo = horarios.get(dia='D')
 
         #DETERMINO SI TIENE UNA SOLICITUD DE LAVADO SIN RESPONDER PARA NO MOSTRAR EL BOTON DE SOLICITAR LAVADO YA Y EVITAR EL FLOOD
-        esperando_solicitud = SolicitudLavadero.objects.filter(cliente=request.user, lavadero=lavadero, aceptado=None).exists()
+        if not request.user.is_anonymous:
+            esperando_solicitud = SolicitudLavadero.objects.filter(cliente=request.user, lavadero=lavadero, aceptado=None).exists()
+        else:
+            esperando_solicitud = True
         print(esperando_solicitud)
         context = {
             'lavadero': lavadero,
