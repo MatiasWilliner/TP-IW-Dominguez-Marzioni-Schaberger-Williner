@@ -19,4 +19,5 @@ urlpatterns = [
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('milavadero/', views.miLavadero, name="milavadero"),
     path('solicitudeslavado/', views.solicitudLavado, name="solicitudeslavado"),
+    path('cambiar_estado_lavadero/', views.cambiarEstadoLavadero, name='cambiar-estado-lavadero'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

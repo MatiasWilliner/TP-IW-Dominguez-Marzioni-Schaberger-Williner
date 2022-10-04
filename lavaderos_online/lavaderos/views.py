@@ -14,6 +14,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from lavaderos.tokens import account_activation_token
+from django import forms
 # Create your views here.
 
 # LANDINGPAGE #Si el usuario está registrado se redigirá al home(ListadoLavadero) Sino LandingPage
@@ -160,8 +161,8 @@ def miLavadero(request):
     try:
         user = request.user
         lavadero = Lavadero.objects.get(creado_por=user)
-        TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False)
-        HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('dia', 'desde', 'hasta'), extra=0, can_delete=False)
+        TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False, widgets={'tipo':forms.Select(attrs={'readonly':'readonly'})})
+        HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('dia', 'desde', 'hasta'), extra=0, can_delete=False, widgets={'dia':forms.Select(attrs={'readonly':'readonly'}), 'desde':forms.TimeInput(format='%H:%M'), 'hasta':forms.TimeInput(format='%H:%M')})
         EstadoInlineFormset = inlineformset_factory(User, Lavadero, fields=('estado',), extra=0, can_delete=False)
     except Lavadero.DoesNotExist:
         lavadero = None
@@ -185,7 +186,7 @@ def miLavadero(request):
                 formset_estado.save()
                 return redirect("milavadero")
             
-        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado})
+        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado, 'estado':lavadero.get_estado_display})
     else:
         return redirect("registrolavadero")      
 
@@ -223,6 +224,34 @@ def solicitudLavado(request):
     return render(request, 'solicitudLavado.html', {'solicitudes':solicitudes})
 
 
+# AGREGAR LOGICA POR CADA BOTON, EN VIEW miLavadero PASAR EL ESTADO ACTUAL DEL LAVADERO COMO CONTEXT PARA PINTAR ESE BOTON DE VERDE
+# PUSHEAR A HEROKU PARA ACTIVAR EL TEMA DE VARIABLE DE ENTORNO
+@login_required(login_url='/cuentas/login/')
+def cambiarEstadoLavadero(request):
+    try:
+        user = request.user
+        lavadero = Lavadero.objects.get(creado_por=user)
+    except Lavadero.DoesNotExist:
+        lavadero = None
+
+    if lavadero:
+        if request.method == "POST":
+            if 'setCerrado' in request.POST:
+                lavadero.estado = 'C'
+                lavadero.save()
+                messages.success(request, "Estado cambiado a CERRADO.")
+            elif 'setAbierto' in request.POST:
+                lavadero.estado = 'A'
+                lavadero.save()
+                messages.success(request, "Estado cambiado a ABIERTO.")
+            elif 'setDisponible' in request.POST:
+                lavadero.estado = 'D'
+                lavadero.save()
+                messages.success(request, "Estado cambiado a DISPONIBLE.")
+    
+        return redirect("milavadero")   
+
+    return redirect("lavaderos")
 
 
 

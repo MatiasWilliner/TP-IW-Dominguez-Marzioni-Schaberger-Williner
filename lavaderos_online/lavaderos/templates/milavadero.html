@@ -9,16 +9,24 @@
 {% block contentmain %}
 <div class="milavadero">
     <div class="topmilavadero">
-        <form method="POST">
+        <form action="{% url 'cambiar-estado-lavadero' %}" method="POST">
             {% csrf_token %}
-            {{ estado_form.management_form|crispy }}
-            {% for f in estado_form %}
-                {{f}}
-                <p></p>
-            {% endfor %}
-            <div class="d-grid gap-2 col-6 mx-auto"><button class="btn btn-primary" type="submit" name="submitEstado">GUARDAR</button></div>
-            
-        </form>
+            {% if estado == "Cerrado" %}
+                <button type="submit" name="setCerrado" class="btn btn-success">CERRADO</button>
+            {% else %}
+                <button type="submit" name="setCerrado" class="btn btn-primary">CERRADO</button>
+            {% endif %}
+            {% if estado == "Abierto" %}
+                <button type="submit" name="setAbierto" class="btn btn-success">ABIERTO</button>
+            {% else %}
+                <button type="submit" name="setAbierto" class="btn btn-primary">ABIERTO</button>
+            {% endif %}
+            {% if estado == "Disponible" %}
+                <button type="submit" name="setDisponible" class="btn btn-success">DISPONIBLE</button>
+            {% else %}
+                <button type="submit" name="setDisponible" class="btn btn-primary">DISPONIBLE</button>
+            {% endif %}
+        </form>       
     </div>
     <div class="middlemilavadero">
         <div class="formtarhor">
