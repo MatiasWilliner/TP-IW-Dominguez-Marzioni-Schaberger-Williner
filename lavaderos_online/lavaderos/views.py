@@ -91,8 +91,6 @@ def lavadero(request,id):
                 solicitud.cliente = request.user
                 solicitud.aceptado = None
                 solicitud.save()
-                #AGREGAR UN MESSAGE QUE LE AVISE AL USUARIO QUE SE SOLICITÓ CORRECTAMENTE
-                messages.success(request, "Solicitud enviada! Esperá por la confirmación.")
                 mailDueño(request, lavadero.creado_por, lavadero.creado_por.email, request.user, solicitud)
                 context['solicitar_lavado'] = form_solicitar_lavado
                 return render(request, template_name='lavadero.html', context=context)
@@ -221,7 +219,7 @@ def solicitudLavado(request):
     else:
         return redirect("lavaderos")
 
-    return render(request, 'solicitudLavado.html', {'solicitudes':solicitudes})
+    return render(request, 'solicitudLavado.html', {'solicitudes':solicitudes, 'lavadero':lavadero})
 
 
 # AGREGAR LOGICA POR CADA BOTON, EN VIEW miLavadero PASAR EL ESTADO ACTUAL DEL LAVADERO COMO CONTEXT PARA PINTAR ESE BOTON DE VERDE
@@ -331,7 +329,7 @@ def activateEmail(request, user, to_email):
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.content_subtype = "html"
     if email.send():
-        messages.success(request, f'Bienvenido <b>{user}</b>, dirijase a su bandeja de entrada: <b>{to_email}</b> y presione el boton confirmar cuenta ')
+        messages.success(request, f'Bienvenido {user}, dirijase a su bandeja de entrada: {to_email} y presione el boton confirmar cuenta ')
     else:
         messages.error(request, f'Ha ocurrido un error enviado un mail a {to_email}')
 
@@ -367,7 +365,7 @@ def mailDueño(request, dueño_lavadero, to_email, cliente, solicitud):
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.content_subtype = "html"
     if email.send():
-        messages.success(request, f'Estimado <b>{dueño_lavadero.username}</b>, ha recibido una solicitud: <b>{to_email}</b>')
+        messages.success(request, f'Se ha enviado una notificación con la solicitud de lavado.')
     else:
         messages.error(request, f'Ha ocurrido un error enviado un mail a {to_email}')
 
@@ -389,6 +387,6 @@ def mailSolicitante(request, cliente, to_email, solicitud, lavadero):
     email = EmailMessage(mail_subject, message, to=[to_email])
     email.content_subtype = "html"
     if email.send():
-        messages.success(request, f'Estimado <b>{cliente.username}</b>, su solicitud ha sido respondida en <b>{to_email}</b>')
+        messages.success(request, f'Se ha enviado una notificación al cliente con la decisión.')
     else:
         messages.error(request, f'Ha ocurrido un error enviado un mail a {to_email}')

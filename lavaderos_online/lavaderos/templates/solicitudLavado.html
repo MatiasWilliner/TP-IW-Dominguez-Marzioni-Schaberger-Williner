@@ -34,7 +34,9 @@
                         <form method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="id_solicitud" value="{{solicitud.id}}">
+                            {% if lavadero.estado == 'D' %}
                             <input type="submit" value="Aceptar" class="btn btn-success" name="aceptar">
+                            {% endif %}
                         </form>
                         <form method="POST">
                             {% csrf_token %}
@@ -45,11 +47,9 @@
                 </div>
             {% endfor %}
         {% else %}
-            <div class="text-center"></div>
-                <br>           
-                <h3>NO HAY SOLICITUDES</h3>
-                <br>
-            </div>
+            <br>           
+            <h3 class="text-center">NO HAY SOLICITUDES</h3>
+            <br>
         {% endif %}        
     </div>   
 </div>
