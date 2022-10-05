@@ -108,3 +108,15 @@
     align-items: center;
 }
 
+
+@media (max-width: 1200px) {
+    .cardlavaderoperfil{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .middlecard{
+        flex-direction: column;
+    }
+}
+

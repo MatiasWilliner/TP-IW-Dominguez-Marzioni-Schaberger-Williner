@@ -1,5 +1,7 @@
 .milavadero{
     display: grid;
+    max-width: 1300px;
+    justify-content: center;
     gap: 25px;
     
 }
@@ -67,4 +69,16 @@
     display: grid;
 	grid-gap: 20px;
 	grid-template-columns: repeat(auto-fill, 320px);
+}
+
+.mensaje_no_solicitudes{
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1400px) {
+    .middlemilavadero{
+        display: grid;
+    }
+    
 }

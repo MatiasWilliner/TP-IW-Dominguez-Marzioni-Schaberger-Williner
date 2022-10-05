@@ -13,21 +13,33 @@ body{
 .navbar{
     grid-column: 1/3;
     grid-row: 1/2;
+
+
     background-color: #1A3176;
     color: #F4F7FC;
     display: flex;
     justify-content: space-between;
     padding: 20px; 
-    padding-left: 40px;
-    padding-right: 40px; 
+    padding-inline: 40px;
     font-size: x-large;
     align-items: center;
+}
+
+.menu__active{
+    cursor: pointer;
+}
+.menu__active:hover{
+    font-weight: bold;
 }
 
 .centernavbar{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.iconnavbar{
+    cursor: pointer;
 }
 
 .iconlogo{
@@ -151,15 +163,47 @@ body{
         left: -215px;
         z-index: 1000;
         position: fixed;
-    } 
+        
+    }
+
+    .sidebar.active{
+        left: 0;
+    }
+
+    .navbar{
+        grid-column: 1/2;
+        padding: 10px;
+        font-size: large;
+    }
+
+    .iconlogo{
+        font-size: x-large;
+    }
+
+    .centernavbar{
+        flex-direction: column;
+    }
+
+
+    
 
     .page{
         grid-template-columns: 1fr;
     }
   }
 
+@media (max-width: 500px) {
+    .input_lavadero_filtro{
+        display: none;
+    }
+    .content{
+        
+        margin: 5px;
+        margin-top: 15px;
+    }
+}
 
 
 
 
-
+  
