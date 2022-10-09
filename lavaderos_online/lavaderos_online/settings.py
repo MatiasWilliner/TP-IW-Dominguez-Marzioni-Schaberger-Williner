@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'lavaderos',
     'crispy_forms',
     'django_extensions',
@@ -155,5 +156,13 @@ PASSWORD_RESET_TIMEOUT = 14400
 # SETEO IMPRIMIR MAILS POR CONSOLA EN LOCAL
 if not os.environ.get("RUNNING_INSIDE_HEROKU", False):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# CONFIG HAYSTACK
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': BASE_DIR / 'whoosh_index',
+    },
+}
 
 django_heroku.settings(locals())

@@ -1,0 +1,4 @@
+{{ object.nombre }}
+{{ object.direccion}}
+{{ object.estado}}
+{{object.id}}
