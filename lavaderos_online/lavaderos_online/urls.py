@@ -21,4 +21,5 @@ urlpatterns = [
     path('solicitudeslavado/', views.solicitudLavado, name="solicitudeslavado"),
     path('cambiar_estado_lavadero/', views.cambiarEstadoLavadero, name='cambiar-estado-lavadero'),
     path('search/', include('haystack.urls'), name="search"),
+    path("robots.txt/", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
