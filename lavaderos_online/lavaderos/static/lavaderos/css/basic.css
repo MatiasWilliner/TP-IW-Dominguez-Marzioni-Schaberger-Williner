@@ -42,6 +42,10 @@ body{
     cursor: pointer;
 }
 
+.usertop{
+    display: contents;
+}
+
 .iconlogo{
     font-size: xxx-large;
 }
@@ -49,6 +53,7 @@ body{
 .rightnavbar{
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 

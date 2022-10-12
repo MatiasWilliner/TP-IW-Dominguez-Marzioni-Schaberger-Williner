@@ -33,9 +33,9 @@
             <div class="rightnavbar">
                 <i class="iconnavbar fa-solid fa-bell"></i>
                 {% if user.is_authenticated %}
-                    <p>{{user.username}}</p>
+                    <p class="usertop">{{user.username}}</p>
                 {% else %}
-                    <a href="/cuentas/login/"><p>INICIAR SESIÓN</p></a>
+                    <a  href="/cuentas/login/"><p class="usertop">INICIAR SESIÓN</p></a>
                 {% endif %}
                 
             </div>
