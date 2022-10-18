@@ -8,5 +8,5 @@ RUN pip install -r requirements.txt
 COPY . /app_grupo2/
 RUN mkdir -p /app_grupo1/data
 RUN python lavaderos_online/manage.py migrate
-RUN python lavaderos_online/manage.py update_index --remove
+RUN python lavaderos_online/manage.py rebuild_index --noinput
 CMD ["python","lavaderos_online/manage.py","runserver", "0.0.0.0:8000"]
