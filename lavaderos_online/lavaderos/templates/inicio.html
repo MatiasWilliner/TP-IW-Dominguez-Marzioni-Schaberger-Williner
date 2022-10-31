@@ -1,6 +1,7 @@
 {% load static %}
 
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <title>Lavaderos-Online</title>
 </head>
+
 <body>
     <div class="fondolanding">
         <img class="fotolanding" src="/media/images/default.jpg" alt="">
@@ -17,51 +19,55 @@
     <div class="landingpage">
         {% block content %}
 
-        {% if user.is_authenticated %}  
-            ¡Bienvenido {{ user.username }}!
-            <p><a href="{% url 'logout' %}">Cerrar sesión</a></p><br>
-            <a href="{% url 'lavaderos' %}"> <button>SITIO</button> </a>
+        {% if user.is_authenticated %}
+        ¡Bienvenido {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Cerrar sesión</a></p><br>
+        <a href="{% url 'lavaderos' %}"> <button>SITIO</button> </a>
 
         {% else %}
-            <div class="logolandingpage">
+        <div class="logolandingpage">
+            <div class="logo_contain">
                 <i class="iconlogo fa-solid fa-car-on"></i>
                 <div class="textologo">
                     <span>LAVADEROS</span>
                     <span>ONLINE</span>
                 </div>
+
             </div>
-            <div class="contenidolanding">
-                <div class="contenidolandinpage">
-                    <h3>¿BUSCÁS UN LAVADERO?</h3>
-                    Encontrá los Lavaderos disponibles de la ciudad de Rafaela en nuestro sitio.<br>
-                    A tu gusto y disposición de forma rápida y fácil.<br><br>
-                    <a href="{% url 'lavaderos' %}"> <button>LAVADEROS</button> </a>
+
+        </div>
+        <div class="contenidolanding">
+            <div class="contenidolandinpage">
+                <div class="titulocontenidolandingpage">¿BUSCÁS UN LAVADERO?</div>
+                <div>
+                    <p>Encontrá los Lavaderos disponibles de la ciudad de Rafaela en nuestro sitio.</p>
+                    <p>A tu gusto y disposición de forma rápida y fácil.</p>
                 </div>
-                <div class="contenidolandinpage">
-                    <h3>¿TENÉS UN LAVADERO DE AUTOS?</h3>
-                    <h3>¿QUERÉS GUARDAR TUS LAVADEROS FAVORITOS?</h3>
-                    Publicá de manera sencilla tu Lavadero y hacete conocer en toda la Ciudad.<br>
-                    Guardá tus lavaderos favoritos para tenerlos siempre a mano. <br><br>
-                    <a href="{% url 'register' %}"> <button>REGISTRARSE</button> </a>
+                <a href="{% url 'lavaderos' %}"> <button>LAVADEROS</button> </a>
+            </div>
+            <div class="contenidolandinpage">
+                <div>
+                    <div class="titulocontenidolandingpage">¿TENÉS UN LAVADERO DE AUTOS?</div>
+                    <div class="titulocontenidolandingpage">¿QUERÉS GUARDAR TUS LAVADEROS FAVORITOS?</div>
                 </div>
+                <div>
+                    <p>Publicá de manera sencilla tu Lavadero y hacete conocer en toda la Ciudad.</p>
+                    <p>Guardá tus lavaderos favoritos para tenerlos siempre a mano.</p>
+                </div>
+                <a href="{% url 'register' %}"> <button class="btn btn-infobtn-light btn-sm">REGISTRARSE</button> </a>
             </div>
-            <div class="iniciarsesion">
-                SI YA TENES CUENTA:
-                <a href="{% url 'login' %}"> <button>INICIAR SESION</button> </a><br><br>
-            </div>
+        </div>
+        <div class="iniciarsesion">
+            SI YA TENES CUENTA:
+            <a href="{% url 'login' %}"> <button>INICIAR SESION</button> </a><br><br>
+        </div>
         {% endif %}
         {% endblock %}
-        
+
 
     </div>
-    
-    
+
+
 </body>
+
 </html>
-
-
-
-
-
-
-

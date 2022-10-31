@@ -2,20 +2,25 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Lavaderos-Online{% endblock %}</title>
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-  <link href="{% static 'lavaderos/css/basic.css' %}" rel="stylesheet" type="text/css">
-  <script src="https://kit.fontawesome.com/1b3a277cca.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  {% block header %}{% endblock %}
-  <!--ICONOS-->
-  <script src="https://kit.fontawesome.com/1b3a277cca.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>{% block title %}Lavaderos-Online{% endblock %}</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="{% static 'lavaderos/css/basic.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/1b3a277cca.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    {% block header %}{% endblock %}
+    <!--ICONOS-->
+    <script src="https://kit.fontawesome.com/1b3a277cca.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="page">
         <div class="navbar">
@@ -33,27 +38,36 @@
             <div class="rightnavbar">
                 <i class="iconnavbar fa-solid fa-bell"></i>
                 {% if user.is_authenticated %}
-                    <p class="usertop">{{user.username}}</p>
+                <p class="usertop">{{user.username}}</p>
                 {% else %}
-                    <a  href="/cuentas/login/"><p class="usertop">INICIAR SESIÓN</p></a>
+                <a href="/cuentas/login/">
+                    <p class="usertop">INICIAR SESIÓN</p>
+                </a>
                 {% endif %}
-                
+
             </div>
         </div>
         <div class="sidebar">
             <ul class="nav flex-column">
+                <div class="titulosidebar">
+                    GENERAL
+                </div>
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">HOME</a>
+                    <a class="nav-link active" aria-current="page" href="/">HOME</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
+                    <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/search/">BUSCAR</a>
+                    <a class="nav-link" href="/search/">BUSCADOR</a>
                 </li>
-                {% if user.is_authenticated %}                 
+                {% if user.is_authenticated %}
+                <div class="titulosidebar user">
+                    USUARIOS
+                </div>
+
                 <li class="nav-item">
-                <a class="nav-link" href="/milavadero/">MI LAVADERO</a>
+                    <a class="nav-link" href="/milavadero/">MI LAVADERO</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/solicitudeslavado/">SOLICITUDES</a>
@@ -65,7 +79,7 @@
                     <a class="nav-link" href="{% url 'logout' %}">CERRAR SESIÓN</a>
                 </li>
                 {% endif %}
-                
+
             </ul>
         </div>
         <div class="contentcenter">
@@ -73,36 +87,37 @@
                 {% for message in messages %}
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>{{message}}</strong>
-                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>
+                    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true"></span></button>
                 </div>
                 {% endfor %}
-                {% block contentmain %}               
+                {% block contentmain %}
                 <div class="topcontent">
                     <div class="searchhome">
-                        <form  method="GET">
-                        <div class="input-group mb-3">
-                            <div class="input-group-text input_lavadero_filtro">
-                                Lavaderos
+                        <form method="GET">
+                            <div class="input-group mb-3">
+                                <div class="input-group-text input_lavadero_filtro">
+                                    Lavaderos
+                                </div>
+                                <select class="form-select" name="estado">
+                                    <option value="T">TODOS</option>
+                                    {% if estadoselect == "A" %}
+                                    <option selected value="A">ACTIVO</option>
+                                    {% else %}
+                                    <option value="A">ABIERTO</option>
+                                    {% endif %}
+                                    {% if estadoselect == "C" %}
+                                    <option selected value="C">CERRADO</option>
+                                    {% else %}
+                                    <option value="C">CERRADO</option>
+                                    {% endif %}
+                                    {% if estadoselect == "D" %}
+                                    <option selected value="D">DISPONIBLE</option>
+                                    {% else %}
+                                    <option value="D">DISPONIBLE</option>
+                                    {% endif %}
+                                    <input class="filtroboton" type="submit" value="Filtrar" />
                             </div>
-                            <select class="form-select" name="estado">
-                                <option value="T">TODOS</option>
-                                {% if estadoselect == "A" %}
-                                <option selected value="A">ACTIVO</option>
-                                {% else %}
-                                <option value="A">ABIERTO</option>
-                                {% endif %}
-                                {% if estadoselect == "C" %}
-                                <option selected value="C">CERRADO</option>
-                                {% else %}
-                                <option value="C">CERRADO</option>
-                                {% endif %}
-                                {% if estadoselect == "D" %}
-                                <option selected value="D">DISPONIBLE</option>
-                                {% else %}
-                                <option value="D">DISPONIBLE</option>
-                                {% endif %}
-                            <input class="filtroboton" type="submit" value="Filtrar" />
-                        </div>
                         </form>
                     </div>
                 </div>
@@ -117,7 +132,7 @@
                             <img class="imglavhome" src="/media/images/default.jpg" alt="">
                             {% endif %}
                         </div>
-                        <div class="detaillav">  
+                        <div class="detaillav">
                             <div class="itempers">
                                 <label class="labelitem">Dirección</label>
                                 <input class="inputitem" value="{{lavadero.direccion}}">
@@ -132,10 +147,11 @@
                             </div>
                         </div>
                         <div class="bottomcard">
-                            <a href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas Info</button></a> 
-                        </div>    
-                    </div> 
-                    {% endfor %}               
+                            <a href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas
+                                    Info</button></a>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endblock %}
             </div>
@@ -143,5 +159,5 @@
     </div>
     <script src=" {% static 'lavaderos/js/Basic.js' %}"></script>
 </body>
-</html>
 
+</html>

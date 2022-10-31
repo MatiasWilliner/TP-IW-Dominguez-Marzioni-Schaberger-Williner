@@ -34,6 +34,7 @@
                 {% csrf_token %}
                 {{ tarifa_form.management_form |crispy }}
                 {% for f in tarifa_form %}
+
                     {{f}}
                     <p></p>
                 {% endfor %}
@@ -46,8 +47,14 @@
                 {% csrf_token %}
                 {{ horario_form.management_form |crispy }}
                 {% for f in horario_form %}
-                    {{f}}
+                    <div class="hola">
+                        aaaa
+                        <span>{{f.tipo}}</span>
+                        {{f}}
                     <p></p>
+
+                    </div>
+                    
                 {% endfor %}
                 <div class="d-grid gap-2 col-2 mx-auto"><button class="btn btn-outline-primary" type="submit" name="submitHorario">GUARDAR</button></div>
                     
