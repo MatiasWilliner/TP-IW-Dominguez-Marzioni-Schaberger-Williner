@@ -63,7 +63,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <div class="titulosidebar user">
-                    USUARIOS
+                    USUARIO
                 </div>
 
                 <li class="nav-item">
@@ -75,8 +75,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/registrolavadero/">REGISTAR LAVADERO</a>
                 </li>
+
+
+                <div class="usersidebar">
+                    <i class="fa-solid fa-user"></i>
+                    <p>{{user.username}}</p>
+                </div>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">CERRAR SESIÓN</a>
+                </li>
+                {% else %}
+                <div class="titulosidebar user">
+                    USUARIO
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cuentas/login/">INICIAR SESIÓN</a>
                 </li>
                 {% endif %}
 
@@ -123,6 +137,36 @@
                 </div>
                 <div class="maincontent">
                     {% for lavadero in lavaderolist %}
+                    {% if lavadero.estado == "D" %}
+                    <div class="cardhome cardhome_disp">
+                        <div class="namelav">{{lavadero.nombre}}</div>
+                        <div class="bottomcard">
+                            {% if lavadero.imagen %}
+                            <img class="imglavhome" src="{{ lavadero.imagen.url }}" alt="">
+                            {% else %}
+                            <img class="imglavhome" src="/media/images/default.jpg" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="detaillav">
+                            <div class="itempers">
+                                <label class="labelitem">Dirección</label>
+                                <input class="inputitem" value="{{lavadero.direccion}}">
+                            </div>
+                            <div class="itempers">
+                                <label class="labelitem">Contacto</label>
+                                <input class="inputitem" value="{{lavadero.telefono}}">
+                            </div>
+                            <div class="itempers">
+                                <label class="labelitem">Estado</label>
+                                <input class="inputitem" value="{{lavadero.get_estado_display}}">
+                            </div>
+                        </div>
+                        <div class="bottomcard">
+                            <a href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas
+                                    Info</button></a>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="cardhome">
                         <div class="namelav">{{lavadero.nombre}}</div>
                         <div class="bottomcard">
@@ -151,6 +195,7 @@
                                     Info</button></a>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
                 {% endblock %}

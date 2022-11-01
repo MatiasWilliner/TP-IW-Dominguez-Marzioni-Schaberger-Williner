@@ -9,7 +9,7 @@
 {% block contentmain %}
     <div class="buscador">
         <div class="titulobuscador">
-            BUSCADOR
+            Buscador
         </div>
     </div>
 
@@ -49,11 +49,20 @@
                                 </div>
                                 <div class="itempers">
                                     <label class="labelitem">Estado</label>
-                                    <input class="inputitem" value="{{result.estado}}">
+                                    {% if result.estado == "C" %}
+                                    <input class="inputitem" value="CERRADO">
+                                    {% endif %}
+                                    {% if result.estado == "D" %}
+                                    <input class="inputitem" value="DISPONIBLE">
+                                    {% endif %}
+                                    {% if result.estado == "A" %}
+                                    <input class="inputitem" value="ABIERTO">
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="bottomcard">
-                                <a href="/perfillavadero/{{result.id}}"><p>Mas Info</p></a>
+                                <a href="/perfillavadero/{{lavadero.id}}"><button class="btn btn-primaryy">Mas
+                                    Info</button></a>
                             </div>   
                         </div>
                             {% empty %}

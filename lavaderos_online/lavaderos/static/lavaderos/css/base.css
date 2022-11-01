@@ -129,6 +129,14 @@ body {
     justify-content: center;
 }
 
+.logolandingpage_reg {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
 .fotolanding {
     width: 100vw;
     height: 100vh;
@@ -136,6 +144,10 @@ body {
 
 .iconlogo {
     font-size: 4rem;
+}
+
+.iconlogo_reg {
+    font-size: 2.5rem;
 }
 
 .textologo {
@@ -150,18 +162,32 @@ body {
     gap: 9px;
 }
 
+.contenido_registro {
+    background-color: #2A3D75;
+    color: white;
+}
+
+.registrarse_login {
+    color: white;
+}
+
 @media (max-width: 900px) {
     .contenidolanding {
         flex-direction: column;
     }
 
-   
+
 
 }
 
 @media (max-width: 700px) {
     .landingpage {
         width: 95vw;
+    }
+
+
+    .textologo {
+        font-size: 2rem;
     }
 
 }

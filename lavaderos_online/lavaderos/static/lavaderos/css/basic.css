@@ -23,6 +23,11 @@ body {
     padding-inline: 40px;
     font-size: x-large;
     align-items: center;
+    z-index: 1500;
+}
+
+.nav{
+    width: 100%;
 }
 
 .menu__active {
@@ -67,12 +72,23 @@ body {
 .sidebar {
     background-color: white;
     height: 100%;
+    width: 200px;
     display: flex;
     font-size: larger;
     font-weight: initial;
     padding-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 
+}
+
+.usersidebar {
+    display: flex;
+    align-items: baseline;
+    color: #0e6da3;
+    gap: 10px;
+    padding-left: 17px;
+    padding-top: 46px;
+    display: none;
 }
 
 .titulosidebar {
@@ -185,14 +201,26 @@ body {
 }
 
 @media (max-width: 700px) {
+
+    
     .sidebar {
         position: absolute;
         transition: 0.5s all ease;
-        top: 100px;
+        top: 0;
+        padding-top: 130px;
         left: -215px;
         z-index: 1000;
         position: fixed;
 
+
+    }
+
+    .usersidebar{
+        display: flex;
+    }
+
+    .usertop{
+        display: none;
     }
 
     .sidebar.active {
@@ -202,12 +230,14 @@ body {
     .navbar {
         grid-column: 1/2;
         padding: 10px;
-        font-size: large;
+        font-size: larger;
     }
 
     .iconlogo {
         font-size: x-large;
     }
+
+    
 
     .centernavbar {
         flex-direction: column;
