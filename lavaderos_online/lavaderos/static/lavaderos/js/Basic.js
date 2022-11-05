@@ -1,14 +1,41 @@
 
 
-const menusidebar = document.getElementsByClassName('menu__active');
+const select_menu = document.querySelectorAll('.nav-item');
+const active_sidebar = document.getElementsByClassName('menu__active');
 const sidebar = document.getElementsByClassName('sidebar');
+var URLactual = window.location;
+console.log(URLactual.href)
 
-console.log(menusidebar);
+console.log(select_menu);
 
-menusidebar[0].addEventListener('click', function onClick() {
-  sidebar[0].classList.toggle('active');
+select_menu.forEach(element => {
+  console.log(element)
+  element.addEventListener('click',()=>{
+    console.log(element)
+    element.classList.toggle('active');
+  })
 });
 
-const combobox_desactivar = document.getElementById('id_tarifa_set')
+if (URLactual.href.includes('/lavaderos/')) {
+  select_menu[0].classList.add('active')
+}
+if (URLactual.href.includes('/search')) {
+  select_menu[1].classList.add('active')
+}
+if (URLactual.href.includes('/registrolavadero/')) {
+  document.getElementsByClassName('sidebarregistrolavadero')[0].classList.add('active')
+}
+if (URLactual.href.includes('/milavadero/')) {
+  document.getElementsByClassName('sidebarmilavadero')[0].classList.add('active')
+}
+if (URLactual.href.includes('/solicitudeslavado/')) {
+  document.getElementsByClassName('sidebarsolicitudeslavado')[0].classList.add('active')
+}
+if (URLactual.href.includes('/search')) {
+  select_menu[1].classList.add('active')
+}
+console.log(active_sidebar[0])
+active_sidebar[0].addEventListener('click',()=>{
+  sidebar[0].classList.toggle('active')
+})
 
-console.log(combobox_desactivar)

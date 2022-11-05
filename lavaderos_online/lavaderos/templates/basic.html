@@ -36,8 +36,13 @@
                 </div>
             </div>
             <div class="rightnavbar">
-                <i class="iconnavbar fa-solid fa-bell"></i>
                 {% if user.is_authenticated %}
+                <div class="notification_nav">
+                    <i class="iconnavbar fa-solid fa-bell"></i>
+                    <div class="contador_notification">
+                        {{ cantidad_solicitudes_pendientes }}
+                    </div>
+                </div>
                 <p class="usertop">{{user.username}}</p>
                 {% else %}
                 <a href="/cuentas/login/">
@@ -53,9 +58,6 @@
                     GENERAL
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">HOME</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="/lavaderos/">LAVADEROS</a>
                 </li>
                 <li class="nav-item">
@@ -65,18 +67,18 @@
                 <div class="titulosidebar user">
                     USUARIO
                 </div>
-
-                <li class="nav-item">
+                {% if lavadero_user_register == 1 %}
+                <li class="nav-item sidebarmilavadero">
                     <a class="nav-link" href="/milavadero/">MI LAVADERO</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item sidebarsolicitudeslavado">
                     <a class="nav-link" href="/solicitudeslavado/">SOLICITUDES</a>
                 </li>
-                <li class="nav-item">
+                {% else %}
+                <li class="nav-item sidebarregistrolavadero">
                     <a class="nav-link" href="/registrolavadero/">REGISTAR LAVADERO</a>
                 </li>
-
-
+                {% endif %}
                 <div class="usersidebar">
                     <i class="fa-solid fa-user"></i>
                     <p>{{user.username}}</p>
@@ -204,5 +206,5 @@
     </div>
     <script src=" {% static 'lavaderos/js/Basic.js' %}"></script>
 </body>
-{{}}
+
 </html>

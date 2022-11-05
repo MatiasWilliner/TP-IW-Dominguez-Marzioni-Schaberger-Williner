@@ -26,12 +26,38 @@ body {
     z-index: 1500;
 }
 
-.nav{
+.notification_nav {
+    position: relative;
+}
+
+.contador_notification {
+    background-color: red;
+    color: white;
+    border-radius: 66%;
+    font-size: 11px;
+    height: 18px;
+    width: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0;
+    font-weight: bold;
+    padding-bottom: 2px;
+    position: absolute;
+    top: 0;
+    right: -6px;
+}
+
+.nav {
     width: 100%;
 }
 
 .menu__active {
     cursor: pointer;
+}
+
+.nav-item.active {
+    background-color: #dddddd;
 }
 
 .menu__active:hover {
@@ -202,7 +228,7 @@ body {
 
 @media (max-width: 700px) {
 
-    
+
     .sidebar {
         position: absolute;
         transition: 0.5s all ease;
@@ -215,11 +241,11 @@ body {
 
     }
 
-    .usersidebar{
+    .usersidebar {
         display: flex;
     }
 
-    .usertop{
+    .usertop {
         display: none;
     }
 
@@ -237,7 +263,7 @@ body {
         font-size: x-large;
     }
 
-    
+
 
     .centernavbar {
         flex-direction: column;

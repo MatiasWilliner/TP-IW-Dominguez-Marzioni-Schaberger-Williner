@@ -1,28 +1,34 @@
 {% extends 'inicio.html' %}
-{% load crispy_forms_tags %} 
+{% load crispy_forms_tags %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <!-- templates/registration/login.html -->
+<!-- templates/registration/login.html -->
+
 <body>
     <div class="logolandingpage_reg">
-		<div class="logo_contain">
-			<i class="iconlogo_reg fa-solid fa-car-on"></i>
-			<div class="textologo_reg">
-				<span>LAVADEROS</span>
-				<span>ONLINE</span>
-			</div>
-		</div>
+        <div class="logo_contain">
+            <i class="iconlogo_reg fa-solid fa-car-on"></i>
+            <div class="textologo_reg">
+                <span>LAVADEROS</span>
+                <span>ONLINE</span>
+            </div>
+        </div>
 
-	</div>
+    </div>
     <h2>Iniciar Sesión</h2>
-    <form method="post">
+    <form method="post" class="post_login">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Ingresar</button>
+        <div class="container_btn_ingresar">
+            <button type="submit" class="btn btn-light btn_ingresar">¡Listo!</button>
+        </div>
     </form>
 
-    <p><strong>¿No tienes una cuenta?  <a href="{% url 'register' %}" class="registrarse_login">Registrarse</a></strong></p>
+    <p><strong>¿No tienes una cuenta? <a href="{% url 'register' %}" class="registrarse_login">Registrarse</a></strong>
+    </p>
+
 </body>
+
 {% endblock %}
