@@ -38,10 +38,13 @@
             <div class="rightnavbar">
                 {% if user.is_authenticated %}
                 <div class="notification_nav">
-                    <i class="iconnavbar fa-solid fa-bell"></i>
+                    {% if lavadero_user_register == 1 %}
+                    <a href="/milavadero/" style='text-decoration:none;color:white'><i class="iconnavbar fa-solid fa-bell"></i></a>
+                    
                     <div class="contador_notification">
                         {{ cantidad_solicitudes_pendientes }}
                     </div>
+                    {% endif %}
                 </div>
                 <p class="usertop">{{user.username}}</p>
                 {% else %}

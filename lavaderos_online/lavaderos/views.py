@@ -2,7 +2,7 @@ from datetime import datetime, time
 from unicodedata import name
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import NewUserForm, NewLavaderoForm, NewTarifaForm, NewSolicitarLavado, NewLavaderoFormA
+from .forms import NewUserForm, NewLavaderoForm, NewTarifaForm, NewSolicitarLavado
 from .models import Lavadero , SolicitudLavadero
 from django.forms import inlineformset_factory
 from django.contrib.auth import login, get_user_model
@@ -27,8 +27,12 @@ def inicio(request):
 # HOME - LISTADO LAVADEROS #No nesesita estar logueado para acceder a esta parte #Si esta logueado tendrá un sidebar con opciones extras
 def basic(request):
     user = request.user
-    lavadero_user_register = len(Lavadero.objects.filter(id = request.user.id))
-    cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero_id = request.user.id, aceptado = None))
+    lavadero_user_register = len(Lavadero.objects.filter(creado_por = user))
+    if lavadero_user_register == 1:
+        lavadero_user = Lavadero.objects.get(creado_por=user)         
+        cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero = lavadero_user, aceptado = None))
+    else:
+        cantidad_solicitudes_pendientes = 0
     print(cantidad_solicitudes_pendientes)
     
     featured_filter = 'T'
@@ -49,7 +53,12 @@ def lavadero(request,id):
 
     print(type(request.user))
     print('ENTRO A LAVADERO')
-    lavadero_user_register = len(Lavadero.objects.filter(id = request.user.id))
+    lavadero_user_register = len(Lavadero.objects.filter(creado_por = request.user))
+    if lavadero_user_register == 1:
+        lavadero_user = Lavadero.objects.get(creado_por=user)         
+        cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero = lavadero_user, aceptado = None))
+    else:
+        cantidad_solicitudes_pendientes = 0
     try:
         lavadero = Lavadero.objects.get(pk=id)
 
@@ -90,6 +99,7 @@ def lavadero(request,id):
             'sabado' : sabado,
             'domingo' : domingo,
             'esperando_solicitud' : esperando_solicitud,
+            'cantidad_solicitudes_pendientes':cantidad_solicitudes_pendientes,
         }            
     except Lavadero.DoesNotExist:
         lavadero = None
@@ -119,7 +129,7 @@ def lavadero(request,id):
 @login_required(login_url='/cuentas/login/')
 def registroLavadero(request):    
     user = request.user
-    lavadero_user_register = len(Lavadero.objects.filter(id = request.user.id))
+    lavadero_user_register = len(Lavadero.objects.filter(creado_por = user))
     usuario_tiene_lavadero = Lavadero.objects.filter(creado_por=user).exists()
     form = NewLavaderoForm()
     formulario = NewTarifaForm()
@@ -172,6 +182,12 @@ def register_request(request):
 def miLavadero(request):
     try:
         user = request.user
+        lavadero_user_register = len(Lavadero.objects.filter(creado_por = user))
+        if lavadero_user_register == 1:
+            lavadero_user = Lavadero.objects.get(creado_por=user)         
+            cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero = lavadero_user, aceptado = None))
+        else:
+            cantidad_solicitudes_pendientes = 0
         lavadero = Lavadero.objects.get(creado_por=user)
         TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False, widgets={'tipo':forms.Select(attrs={'readonly':'readonly'})})
         HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('dia', 'desde', 'hasta'), extra=0, can_delete=False, widgets={'dia':forms.Select(attrs={'readonly':'readonly'}), 'desde':forms.TimeInput(format='%H:%M'), 'hasta':forms.TimeInput(format='%H:%M')})
@@ -198,7 +214,7 @@ def miLavadero(request):
                 formset_estado.save()
                 return redirect("milavadero")
             
-        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado, 'estado':lavadero.get_estado_display})
+        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado, 'estado':lavadero.get_estado_display, 'lavadero_user_register':lavadero_user_register, 'cantidad_solicitudes_pendientes':cantidad_solicitudes_pendientes})
     else:
         return redirect("registrolavadero")           
 
@@ -206,9 +222,15 @@ def miLavadero(request):
 @login_required(login_url='/cuentas/login/')
 def solicitudLavado(request):
     print("ENTRO A LISTADO DE SOLICITUDES")
-    lavadero_user_register = len(Lavadero.objects.filter(id = request.user.id))
+    
     try:
         user = request.user
+        lavadero_user_register = len(Lavadero.objects.filter(creado_por = user))
+        if lavadero_user_register == 1:
+            lavadero_user = Lavadero.objects.get(creado_por=user)         
+            cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero = lavadero_user, aceptado = None))
+        else:
+            cantidad_solicitudes_pendientes = 0
         lavadero = Lavadero.objects.get(creado_por=user)
     except Lavadero.DoesNotExist:
         lavadero = None
@@ -234,7 +256,7 @@ def solicitudLavado(request):
     else:
         return redirect("lavaderos")
 
-    return render(request, 'solicitudLavado.html', {'lavadero_user_register':lavadero_user_register,'solicitudes':solicitudes, 'lavadero':lavadero})
+    return render(request, 'solicitudLavado.html', {'lavadero_user_register':lavadero_user_register,'solicitudes':solicitudes, 'lavadero':lavadero, 'cantidad_solicitudes_pendientes':cantidad_solicitudes_pendientes})
 
 
 # AGREGAR LOGICA POR CADA BOTON, EN VIEW miLavadero PASAR EL ESTADO ACTUAL DEL LAVADERO COMO CONTEXT PARA PINTAR ESE BOTON DE VERDE
