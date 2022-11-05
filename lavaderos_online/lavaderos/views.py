@@ -170,13 +170,11 @@ def register_request(request):
 
 @login_required(login_url='/cuentas/login/')
 def miLavadero(request):
-    lavadero_user_register = len(Lavadero.objects.filter(id = request.user.id))
     try:
         user = request.user
         lavadero = Lavadero.objects.get(creado_por=user)
-        form_n = NewLavaderoFormA()
         TarifaInlineFormset = inlineformset_factory(Lavadero, Tarifa, fields=('tipo', 'monto',), extra=0, can_delete=False, widgets={'tipo':forms.Select(attrs={'readonly':'readonly'})})
-        HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('desde', 'hasta'), extra=0, can_delete=False, widgets={ 'desde':forms.TimeInput(format='%H:%M'), 'hasta':forms.TimeInput(format='%H:%M')})
+        HorarioInlineFormset = inlineformset_factory(Lavadero, Horario, fields=('dia', 'desde', 'hasta'), extra=0, can_delete=False, widgets={'dia':forms.Select(attrs={'readonly':'readonly'}), 'desde':forms.TimeInput(format='%H:%M'), 'hasta':forms.TimeInput(format='%H:%M')})
         EstadoInlineFormset = inlineformset_factory(User, Lavadero, fields=('estado',), extra=0, can_delete=False)
     except Lavadero.DoesNotExist:
         lavadero = None
@@ -200,9 +198,9 @@ def miLavadero(request):
                 formset_estado.save()
                 return redirect("milavadero")
             
-        return render(request, 'milavadero.html', {'lavadero_user_register':lavadero_user_register,'form_n':form_n,'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado, 'estado':lavadero.get_estado_display})
+        return render(request, 'milavadero.html', {'tarifa_form':formset_tarifa, 'horario_form':formset_horario, 'estado_form':formset_estado, 'estado':lavadero.get_estado_display})
     else:
-        return redirect("registrolavadero")      
+        return redirect("registrolavadero")           
 
 
 @login_required(login_url='/cuentas/login/')
