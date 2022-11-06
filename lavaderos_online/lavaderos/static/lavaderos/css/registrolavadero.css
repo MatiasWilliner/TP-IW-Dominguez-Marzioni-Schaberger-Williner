@@ -15,6 +15,11 @@
     gap: 20px;
 
 }
+
+.card_registro_lav{
+    grid-template-columns: 1fr;
+}
+
 .topcontentlavadero.button{
     height: 40px;
     background-color: #223E8C;
@@ -34,11 +39,16 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
-.cardslavadero{
+.cardslavadero_r{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 40px;
     padding-block: 25px;
+}
+
+.btn_register_lavadero{
+    display: flex;
+    justify-content: center;
 }
 
 .bienvenidoregistro{

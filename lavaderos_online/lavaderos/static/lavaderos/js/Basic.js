@@ -39,3 +39,6 @@ active_sidebar[0].addEventListener('click',()=>{
   sidebar[0].classList.toggle('active')
 })
 
+var select = document.getElementsByTagName("select");
+console.log(select)
+

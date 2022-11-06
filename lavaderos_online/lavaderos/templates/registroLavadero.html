@@ -31,12 +31,15 @@
         <div class="bienvenidoregistro">A continuación rellene los campos solicitados</div>
     </div>
     <form method="POST" enctype="multipart/form-data">
-    <div class="cardslavadero">
+    <div class="cardslavadero_r">
         <div class="cardlavaderoregistro">
             {% csrf_token %}
             {{register_lavadero|crispy}}
             <br>
-            <input type="submit" value="REGISTRARSE">
+            <div class="btn_register_lavadero">
+                <input class="btn btn-primary" type="submit" value="REGISTRARSE">
+            </div>
+            
         </div>         
     </div>
     {% endif %}   

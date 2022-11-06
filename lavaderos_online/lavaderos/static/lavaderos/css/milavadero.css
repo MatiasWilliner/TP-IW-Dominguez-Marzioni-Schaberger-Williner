@@ -1,12 +1,11 @@
-.milavadero{
+.milavadero {
     display: grid;
     max-width: 1300px;
-    justify-content: center;
     gap: 25px;
-    
+
 }
 
-.topmilavadero{
+.topmilavadero {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,11 +17,19 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
-.btn_estado{
+.btn_estado {
     width: 120px;
 }
+select {
+    pointer-events: none;
+    /*-webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 5px;
+    background-color: #eee;
+    border: none;*/
+}
 
-.topcontentlavadero{
+.topcontentlavadero {
     padding: 10px;
     height: 65px;
     border-radius: 5px;
@@ -35,12 +42,12 @@
     gap: 20px;
 }
 
-.middlemilavadero{
+.middlemilavadero {
     display: flex;
     gap: 25px;
 }
 
-.formtarhor{
+.formtarhor {
     background-color: rgb(250, 250, 250);
     display: flex;
     align-items: center;
@@ -53,7 +60,7 @@
 
 
 
-.titulosolicitudlavado{
+.titulosolicitudlavado {
     background-color: #223E8C;
     border-radius: 5px;
     text-align: center;
@@ -61,50 +68,51 @@
     margin-bottom: 15px;
 }
 
-.itemsolictudlavado{
+.itemsolictudlavado {
     width: 310px;
     border: 0.5px solid rgb(202, 202, 202);
     border-radius: 5px;
     padding: 5px;
 }
 
-.botonesrespondersolicitud{
+.botonesrespondersolicitud {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-.input-item-solicitud-lavado{
+.input-item-solicitud-lavado {
     width: 130px;
 }
 
-.contenido-solicitudes-lavado{
+.contenido-solicitudes-lavado {
     display: grid;
-	grid-gap: 20px;
-	grid-template-columns: repeat(auto-fill, 320px);
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 320px);
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, 320px);
     background: white;
     margin-block: 20px;
     border-radius: 5px;
+    padding: 10px;
 }
 
-.mensaje_no_solicitudes{
+.mensaje_no_solicitudes {
     display: flex;
     justify-content: center;
 }
 
 @media (max-width: 1400px) {
-    .middlemilavadero{
+    .middlemilavadero {
         display: grid;
     }
-    
+
 }
 
 @media (max-width: 500px) {
-    .topmilavadero{
+    .topmilavadero {
         flex-direction: column;
     }
-    
+
 }

@@ -26,7 +26,6 @@
         <div class="navbar">
             <div class="leftnavbar">
                 <i class="iconnavbar menu__active fa-solid fa-bars"></i>
-
             </div>
             <div class="centernavbar">
                 <i class="iconlogo fa-solid fa-car-on"></i>
@@ -39,7 +38,7 @@
                 {% if user.is_authenticated %}
                 <div class="notification_nav">
                     {% if lavadero_user_register == 1 %}
-                    <a href="/milavadero/" style='text-decoration:none;color:white'><i class="iconnavbar fa-solid fa-bell"></i></a>
+                    <a href="/solicitudeslavado/" style='text-decoration:none;color:white'><i class="iconnavbar fa-solid fa-bell"></i></a>
                     
                     <div class="contador_notification">
                         {{ cantidad_solicitudes_pendientes }}

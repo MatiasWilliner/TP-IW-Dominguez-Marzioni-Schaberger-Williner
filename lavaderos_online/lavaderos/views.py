@@ -28,6 +28,7 @@ def inicio(request):
 def basic(request):
     user = request.user
     lavadero_user_register = len(Lavadero.objects.filter(creado_por = user))
+    print("AAAAAAAAAAAA",lavadero_user_register)
     if lavadero_user_register == 1:
         lavadero_user = Lavadero.objects.get(creado_por=user)         
         cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero = lavadero_user, aceptado = None))
@@ -124,8 +125,6 @@ def lavadero(request,id):
         print(lavadero)
         return redirect("lavaderos")
 
-
-#NICO
 @login_required(login_url='/cuentas/login/')
 def registroLavadero(request):    
     user = request.user

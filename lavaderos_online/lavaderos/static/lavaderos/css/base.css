@@ -138,11 +138,17 @@ h2 {
     z-index: -1000;
 }
 
+a{
+    text-decoration: none !important;
+    color: white !important;
+}
+
 .logolandingpage {
     display: flex;
     gap: 20px;
     align-items: center;
     justify-content: center;
+    
 }
 
 .logolandingpage_reg {
@@ -151,6 +157,7 @@ h2 {
     align-items: center;
     justify-content: center;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .fotolanding {
@@ -198,6 +205,7 @@ h2 {
     display: grid;
     display: grid;
     text-align: end;
+    padding-top: 30px;
 }
 
 .registrarse_login {
