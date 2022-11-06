@@ -56,6 +56,9 @@ body {
     cursor: pointer;
 }
 
+.menu__active {
+    display: none !important;
+}
 .nav-item.active {
     background-color: #dddddd;
 }
@@ -80,6 +83,10 @@ body {
 
 .usertop {
     display: contents;
+    color: white;
+}
+.usertop:hover{
+    color: #a2a2a4;
 }
 
 
@@ -92,6 +99,11 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
+    color: white;
+}
+
+a{
+    text-decoration: none;
 }
 
 
@@ -226,9 +238,15 @@ body {
     background-color: #3154b6;
 }
 
+
+
 @media (max-width: 700px) {
 
-
+    .menu__active{
+        display: block !important;
+        font-size: 28px;
+        padding-left: 20px;
+    }
     .sidebar {
         position: absolute;
         transition: 0.5s all ease;

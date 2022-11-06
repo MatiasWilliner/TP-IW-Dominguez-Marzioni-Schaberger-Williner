@@ -37,11 +37,10 @@
 
     <div class="middlemilavadero">
         <div class="formtarhor">
-            <form method="POST">
+            <form class="form_tarifas" method="POST">
                 {% csrf_token %}
                 {{ tarifa_form.management_form |crispy }}
                 {% for f in tarifa_form %}
-
                 {{f}}
                 <p></p>
                 {% endfor %}
@@ -56,7 +55,6 @@
                 {{ horario_form.management_form |crispy }}
                 {% for f in horario_form %}
                 <div class="hola">
-                    aaaa
                     <span>{{f.tipo}}</span>
                     {{f}}
                     <p></p>
