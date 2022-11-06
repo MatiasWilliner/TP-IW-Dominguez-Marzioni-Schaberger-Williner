@@ -20,50 +20,56 @@
             {% if estado == "Cerrado" %}
             <button type="submit" name="setCerrado" class="btn btn_estado btn-success">CERRADO</button>
             {% else %}
-            <button type="submit" name="setCerrado" class="btn btn_estado btn-outline-primary">CERRADO</button>
+            <button type="submit" name="setCerrado" class="btn btn_estado btn-outline-secondary">CERRADO</button>
             {% endif %}
             {% if estado == "Abierto" %}
             <button type="submit" name="setAbierto" class="btn btn_estado btn-success">ABIERTO</button>
             {% else %}
-            <button type="submit" name="setAbierto" class="btn btn_estado btn-outline-primary">ABIERTO</button>
+            <button type="submit" name="setAbierto" class="btn btn_estado btn-outline-secondary">ABIERTO</button>
             {% endif %}
             {% if estado == "Disponible" %}
             <button type="submit" name="setDisponible" class="btn btn_estado btn-success">DISPONIBLE</button>
             {% else %}
-            <button type="submit" name="setDisponible" class="btn btn_estado btn-outline-primary">DISPONIBLE</button>
+            <button type="submit" name="setDisponible" class="btn btn_estado btn-outline-secondary">DISPONIBLE</button>
             {% endif %}
         </div>
     </form>
 
     <div class="middlemilavadero">
         <div class="formtarhor">
-            <form class="form_tarifas" method="POST">
-                {% csrf_token %}
-                {{ tarifa_form.management_form |crispy }}
-                {% for f in tarifa_form %}
-                {{f}}
-                <p></p>
-                {% endfor %}
-                <div class="d-grid gap-2 col-2 mx-auto"><button class="btn btn-outline-primary" type="submit"
-                        name="submitTarifa">GUARDAR</button></div>
+            <form method="POST" class="form_hor">
+                <div class="contenthola">
+                    {% csrf_token %}
+                    {{ tarifa_form.management_form |crispy }}
+                    {% for f in tarifa_form %}
+                    <div class="hola">
+                        {{f}}
+                    </div>
 
+                    {% endfor %}
+
+
+                </div>
+                <div class="d-grid gap-2 col-2 mx-auto btn_guardartarifa"><button class="btn btn-outline-primary" type="submit"
+                        name="submitTarifa">GUARDAR</button>
+                </div>
             </form>
         </div>
         <div class="formtarhor">
-            <form method="POST">
-                {% csrf_token %}
-                {{ horario_form.management_form |crispy }}
-                {% for f in horario_form %}
-                <div class="hola">
-                    <span>{{f.tipo}}</span>
-                    {{f}}
-                    <p></p>
-
+            <form method="POST" class="form_hor">
+                <div class="contenthola">
+                    {% csrf_token %}
+                    {{ horario_form.management_form |crispy }}
+                    {% for f in horario_form %}
+                    <div class="hola">
+                        {{f}}
+                    </div>
+                    {% endfor %}
                 </div>
 
-                {% endfor %}
-                <div class="d-grid gap-2 col-2 mx-auto"><button class="btn btn-outline-primary" type="submit"
-                        name="submitHorario">GUARDAR</button></div>
+                <div class="d-grid gap-2 col-2 mx-auto btn_guardartarifa"><button class="btn btn-outline-primary" type="submit"
+                        name="submitHorario">GUARDAR</button>
+                </div>
 
             </form>
         </div>

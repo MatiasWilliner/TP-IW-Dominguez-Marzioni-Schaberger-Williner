@@ -20,13 +20,15 @@
 .btn_estado {
     width: 120px;
 }
+
 select {
     pointer-events: none;
-    /*-webkit-appearance: none;
+    -webkit-appearance: none;
     -moz-appearance: none;
     border-radius: 5px;
     background-color: #eee;
-    border: none;*/
+    border: none;
+    text-align: center;
 }
 
 .topcontentlavadero {
@@ -43,7 +45,8 @@ select {
 }
 
 .middlemilavadero {
-    display: flex;
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
     gap: 25px;
 }
 
@@ -56,9 +59,32 @@ select {
     border-radius: 6px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    min-height: 300px;
 }
 
+.form_hor{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
+}
 
+.hola {
+    gap: 10px;
+    border: 0.3px solid #d7d7d7;
+    padding: 5px;
+    border-radius: 5px;
+    margin-block: 5px;
+}
+
+.btn_guardartarifa{
+    height: 30px;
+    margin: 20px;
+    width: 100px;
+}
 
 .titulosolicitudlavado {
     background-color: #223E8C;
@@ -69,7 +95,7 @@ select {
 }
 
 .itemsolictudlavado {
-    width: 310px;
+    width: 330px;
     border: 0.5px solid rgb(202, 202, 202);
     border-radius: 5px;
     padding: 5px;
@@ -89,9 +115,6 @@ select {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, 320px);
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(auto-fill, 320px);
     background: white;
     margin-block: 20px;
     border-radius: 5px;
@@ -105,14 +128,36 @@ select {
 
 @media (max-width: 1400px) {
     .middlemilavadero {
-        display: grid;
+        grid-template-columns: 1fr;
     }
 
+    .contenido-solicitudes-lavado {
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .hola {
+        display: grid;
+        grid-auto-columns: 1fr 1fr;
+        grid-template-columns: 0.5fr 1fr;
+        gap: 10px;
+        border: 0.3px solid #d7d7d7;
+        padding: 5px;
+        border-radius: 5px;
+        margin-block: 5px;
+    }
 }
 
 @media (max-width: 500px) {
     .topmilavadero {
         flex-direction: column;
     }
+    .btn_estado {
+        width: 100%;
+    }
+
+    
 
 }
