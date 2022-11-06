@@ -56,7 +56,7 @@ def lavadero(request,id):
     print('ENTRO A LAVADERO')
     lavadero_user_register = len(Lavadero.objects.filter(creado_por = request.user))
     if lavadero_user_register == 1:
-        lavadero_user = Lavadero.objects.get(creado_por=user)         
+        lavadero_user = Lavadero.objects.get(creado_por=request.user)         
         cantidad_solicitudes_pendientes = len(SolicitudLavadero.objects.filter(lavadero = lavadero_user, aceptado = None))
     else:
         cantidad_solicitudes_pendientes = 0
